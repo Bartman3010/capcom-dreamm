@@ -1,0 +1,325 @@
+//
+// Super Puzzle Fighter
+//
+desc[cap-puzzle]:
+
+name = Super Puzzle Fighter II Turbo / X
+icon = cap-puzzle.png
+machine = pc
+rootpath = C:\SPF2 Turbo
+launch = "$(rootpath)\$(EXENAME).exe" $(CMD_ARG)
+osenv = windows 98
+filter = nonlucas, netplay
+winres = 640x480x16
+
+//
+// filesystem
+//
+mount[]: vpath = C:\; srcpath = $(ifsdeltapath); writable = true
+mount[]: vpath = $(rootpath); srcpath = $(ifsinstallpath)
+mount[]: vpath = D:\; srcpath = $(ifsinstallpath)\CD
+
+//
+// dynamic files
+//
+dynamicfile[]: path = D:\$(CDLABEL); attributes = 8; contents = $(NULL)
+
+//
+// registry
+//
+script[registry]: code = winregistry_import_file("C:\\DREAMM.REG")
+dynamicfile[]:
+    path = C:\DREAMM.REG
+    contents = [[[$(CRLF)
+        REGEDIT4
+		[HKEY_LOCAL_MACHINE\SOFTWARE\CAPCOM\w_spf2x]
+		"(Default)"=""
+		"CD-ROM"="D:\\"
+		"NET_USER"="DREAMM"
+		"SAVEDIR"="$$(rootpath)"
+		"SC_MODE"="SCREEN_MODE_360*240_16BIT_WINDOWS"
+		"SETUPCHECK"="SETUP_ALL_OK"
+		"SHORTCUT"="C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Capcom\\PUZZLE FIGHTER\\"
+		"WINTEMP"="C:\\Windows\\Temp\\W_SPF2X.EXE"
+	]]]
+end
+
+//
+// Shortcut Start
+//
+config[mode]:
+    title = Start Mode
+    option[startup]:  name = Game Start; CMD_ARG = STARTUP; priority = 1
+    option[setup]: name = Setup; CMD_ARG = SETUP
+end
+
+//
+// video configuration
+//
+config[video]:
+    title = Video Configuration
+    option[window]:  name = Cropped to Window; wincrop = true; priority = 1
+    option[desktop]: name = Full Desktop;      wincrop = false
+end
+
+game[pc-cd-en]:
+	name = English CD
+	anchorfile = EXEC_ST.EXE
+    file[]: crc = 3c272c75; size =     48128; name = EXEC_ST.EXE
+	
+	//CD-ROM
+    file[]: crc = 36351a3d; size =   2008194; name = CD\CAPCOM.AVI
+    file[]: crc = 3c272c75; size =     48128; name = CD\EXEC_ST.EXE
+    file[]: crc = 830a89d2; size =       531; name = CD\README.TXT
+    file[]: crc = ecbb4b55; size =        16; name = CD\SETDATA
+    file[]: crc = 68238493; size =   1585152; name = CD\SETUP.EXE
+    file[]: crc = 5abed4fc; size =     49152; name = CD\STARTUP.EXE
+    file[]: crc = 7c6bea83; size =   1645568; name = CD\W_SPF2X.EXE
+    file[]: crc = 4178d257; size =  21247484; name = CD\BGM\SPF01.WAV
+    file[]: crc = 1885edab; size =  21218320; name = CD\BGM\SPF02.WAV
+    file[]: crc = 38b4094f; size =  21237164; name = CD\BGM\SPF03.WAV
+    file[]: crc = 7a0170d3; size =  21269496; name = CD\BGM\SPF04.WAV
+    file[]: crc = 382436aa; size =  21219740; name = CD\BGM\SPF05.WAV
+    file[]: crc = 8c111575; size =  21197192; name = CD\BGM\SPF06.WAV
+    file[]: crc = 12ba87be; size =  21235964; name = CD\BGM\SPF07.WAV
+    file[]: crc = b8367173; size =  21229812; name = CD\BGM\SPF08.WAV
+    file[]: crc = 6d2e2c7d; size =  21258020; name = CD\BGM\SPF09.WAV
+    file[]: crc = 7c8983e2; size =  21230856; name = CD\BGM\SPF10.WAV
+    file[]: crc = 4a057c79; size =  21466172; name = CD\BGM\SPF11.WAV
+    file[]: crc = 7eaf034b; size =   1890696; name = CD\BGM\SPF12.WAV
+    file[]: crc = b7bd241e; size =  20503556; name = CD\BGM\SPF13.WAV
+    file[]: crc = 10a5d24d; size =   8422540; name = CD\BGM\SPF14.WAV
+    file[]: crc = 6b5fe547; size =    478028; name = CD\BGM\SPF15.WAV
+    file[]: crc = e6d6d3be; size =    365420; name = CD\BGM\SPF15_2.WAV
+    file[]: crc = 4f12938e; size =   4632700; name = CD\BGM\SPF16.WAV
+    file[]: crc = 70f2f23e; size =   5469444; name = CD\BGM\SPF17.WAV
+    file[]: crc = 4fbc0245; size =    249748; name = CD\BGM\SPF18.WAV
+    file[]: crc = dd7fadd4; size =    457004; name = CD\BGM\SPF18_2.WAV
+    file[]: crc = 8ed076b5; size =    260560; name = CD\BGM\SPF19.WAV
+    file[]: crc = b4c0118b; size =    489244; name = CD\BGM\SPF19_2.WAV
+    file[]: crc = 7a17f474; size =  17364240; name = CD\BGM\SPF20.WAV
+    file[]: crc = 4c1f9d3e; size =  21925420; name = CD\BGM\SPF21.WAV
+    file[]: crc = b4a365f9; size =    118784; name = CD\EMI\COFFEE00.EMI
+    file[]: crc = fb02480a; size =     94208; name = CD\EMI\COFFEE01.EMI
+    file[]: crc = 81107558; size =    120832; name = CD\EMI\COFFEE02.EMI
+    file[]: crc = ab10dfaa; size =    120832; name = CD\EMI\COFFEE03.EMI
+    file[]: crc = f601f4d6; size =    221184; name = CD\EMI\COFFEE04.EMI
+    file[]: crc = 9c9d104b; size =    186368; name = CD\EMI\COFFEE05.EMI
+    file[]: crc = b2770eb8; size =     38912; name = CD\EMI\COFFEE06.EMI
+    file[]: crc = 5334aecb; size =     65536; name = CD\EMI\EFCT_OBJ.EMI
+    file[]: crc = 7a791fdf; size =    561152; name = CD\EMI\ENDING00.EMI
+    file[]: crc = a5b240a3; size =    501760; name = CD\EMI\ENDING01.EMI
+    file[]: crc = 2650d7c1; size =    561152; name = CD\EMI\ENDING02.EMI
+    file[]: crc = b2236985; size =    501760; name = CD\EMI\ENDING03.EMI
+    file[]: crc = 2e69adc7; size =   1046528; name = CD\EMI\FIRST.EMI
+    file[]: crc = 6e1f3e5f; size =    174080; name = CD\EMI\GAME_OBJ.EMI
+    file[]: crc = 92728053; size =    317440; name = CD\EMI\HARD_END.EMI
+    file[]: crc = 136f3a85; size =    137216; name = CD\EMI\IMG00.EMI
+    file[]: crc = de30cdbd; size =    116736; name = CD\EMI\IMG01.EMI
+    file[]: crc = 2de0485a; size =    137216; name = CD\EMI\IMG02.EMI
+    file[]: crc = 3f666287; size =    137216; name = CD\EMI\IMG03.EMI
+    file[]: crc = 2159f794; size =    116736; name = CD\EMI\IMG04.EMI
+    file[]: crc = 411ad2c8; size =    126976; name = CD\EMI\IMG05.EMI
+    file[]: crc = 2eeacb91; size =    118784; name = CD\EMI\IMG06.EMI
+    file[]: crc = 8fcf6a12; size =    116736; name = CD\EMI\IMG07.EMI
+    file[]: crc = 08b55334; size =     75776; name = CD\EMI\IMG08.EMI
+    file[]: crc = 9a4fdce9; size =     67584; name = CD\EMI\IMG09.EMI
+    file[]: crc = 82e25300; size =     67584; name = CD\EMI\IMG10.EMI
+    file[]: crc = b54dd952; size =     79872; name = CD\EMI\IMG11.EMI
+    file[]: crc = 11b97fab; size =     69632; name = CD\EMI\IMG12.EMI
+    file[]: crc = 0326f1a7; size =     67584; name = CD\EMI\IMG13.EMI
+    file[]: crc = 8dee63da; size =     69632; name = CD\EMI\IMG14.EMI
+    file[]: crc = b8d00ae5; size =     79872; name = CD\EMI\IMG15.EMI
+    file[]: crc = ad71fee8; size =     69632; name = CD\EMI\IMG16.EMI
+    file[]: crc = 28da0f6b; size =     69632; name = CD\EMI\IMG17.EMI
+    file[]: crc = e4fc395f; size =     65536; name = CD\EMI\IMG18.EMI
+    file[]: crc = 0570a3eb; size =     71680; name = CD\EMI\IMG19.EMI
+    file[]: crc = 655f9939; size =     75776; name = CD\EMI\IMG20.EMI
+    file[]: crc = 84f388ae; size =     94208; name = CD\EMI\INST.EMI
+    file[]: crc = 1af73a36; size =     33706; name = CD\EMI\MAINCOL.BIN
+    file[]: crc = 5e53e178; size =    350208; name = CD\EMI\PL00_OBJ.EMI
+    file[]: crc = ddf759d6; size =    208896; name = CD\EMI\PL01_OBJ.EMI
+    file[]: crc = eb9a99c9; size =    231424; name = CD\EMI\PL02_OBJ.EMI
+    file[]: crc = 22e83c27; size =    153600; name = CD\EMI\PL03_OBJ.EMI
+    file[]: crc = 90420ccf; size =    301056; name = CD\EMI\PL04_OBJ.EMI
+    file[]: crc = a17c93d1; size =    303104; name = CD\EMI\PL05_OBJ.EMI
+    file[]: crc = 56f97712; size =    239616; name = CD\EMI\PL06_OBJ.EMI
+    file[]: crc = 4f634c23; size =    294912; name = CD\EMI\PL07_OBJ.EMI
+    file[]: crc = 16c2b08e; size =    389120; name = CD\EMI\PL08_OBJ.EMI
+    file[]: crc = 81c1ac1d; size =    215040; name = CD\EMI\PL09_OBJ.EMI
+    file[]: crc = 86f2081c; size =     38912; name = CD\EMI\PL0A_OBJ.EMI
+    file[]: crc = 1be818e4; size =    268288; name = CD\EMI\PL9A_OBJ.EMI
+    file[]: crc = 4d0b6146; size =    157696; name = CD\EMI\SE_COMN.EMI
+    file[]: crc = 177af2ec; size =    135168; name = CD\EMI\SE_COMN2.EMI
+    file[]: crc = c0ec59d5; size =     61440; name = CD\EMI\SE_CONT.EMI
+    file[]: crc = 05a3568c; size =    194560; name = CD\EMI\SE_END.EMI
+    file[]: crc = 79cc9a4f; size =    165888; name = CD\EMI\SE_PL00.EMI
+    file[]: crc = bcbcf7ff; size =    147456; name = CD\EMI\SE_PL01.EMI
+    file[]: crc = 7020b255; size =    110592; name = CD\EMI\SE_PL02.EMI
+    file[]: crc = d5f5d8b8; size =    139264; name = CD\EMI\SE_PL03.EMI
+    file[]: crc = f105608a; size =    192512; name = CD\EMI\SE_PL04.EMI
+    file[]: crc = 9862dd12; size =    145408; name = CD\EMI\SE_PL05.EMI
+    file[]: crc = dc5cb481; size =    186368; name = CD\EMI\SE_PL06.EMI
+    file[]: crc = 0fb96399; size =    198656; name = CD\EMI\SE_PL07.EMI
+    file[]: crc = 6a24cdab; size =    194560; name = CD\EMI\SE_PL08.EMI
+    file[]: crc = c379a78c; size =    110592; name = CD\EMI\SE_PL09.EMI
+    file[]: crc = ef71e1e4; size =    188416; name = CD\EMI\SE_PL0A.EMI
+    file[]: crc = 1471f81f; size =    133120; name = CD\EMI\SE_SEL.EMI
+    file[]: crc = 4d565617; size =    505856; name = CD\EMI\SELECT.EMI
+    file[]: crc = e8f48488; size =    101618; name = CD\EMI\SIDE16B.BIN
+    file[]: crc = 88b7eaee; size =     99023; name = CD\EMI\SIDE16BU.BIN
+    file[]: crc = 19007c3d; size =     59059; name = CD\EMI\SIDE8B.BIN
+    file[]: crc = c1e55576; size =     57091; name = CD\EMI\SIDE8BU.BIN
+    file[]: crc = a2524398; size =     73728; name = CD\EMI\STAGE00.EMI
+    file[]: crc = dad9d79d; size =     73728; name = CD\EMI\STAGE01.EMI
+    file[]: crc = 8238d267; size =     73728; name = CD\EMI\STAGE02.EMI
+    file[]: crc = 165cf3e6; size =     73728; name = CD\EMI\STAGE03.EMI
+    file[]: crc = 819f0e29; size =     73728; name = CD\EMI\STAGE04.EMI
+    file[]: crc = c3e93a7b; size =     73728; name = CD\EMI\STAGE05.EMI
+    file[]: crc = d3cc3ac4; size =     73728; name = CD\EMI\STAGE06.EMI
+    file[]: crc = 9babaadd; size =     73728; name = CD\EMI\STAGE07.EMI
+    file[]: crc = b83de311; size =     73728; name = CD\EMI\STAGE08.EMI
+    file[]: crc = ea8a4d95; size =     73728; name = CD\EMI\STAGE09.EMI
+    file[]: crc = 069943f7; size =    182272; name = CD\EMI2\COFFEE00.EMI
+    file[]: crc = 1ec47c32; size =    167936; name = CD\EMI2\COFFEE01.EMI
+    file[]: crc = af450239; size =    161792; name = CD\EMI2\COFFEE02.EMI
+    file[]: crc = 0efedceb; size =    153600; name = CD\EMI2\COFFEE03.EMI
+    file[]: crc = 2dbe473d; size =    307200; name = CD\EMI2\COFFEE04.EMI
+    file[]: crc = 28ddbc77; size =    249856; name = CD\EMI2\COFFEE05.EMI
+    file[]: crc = d3fe4968; size =     49152; name = CD\EMI2\COFFEE06.EMI
+    file[]: crc = b0f83943; size =     75776; name = CD\EMI2\EFCT_OBJ.EMI
+    file[]: crc = 10e9ffcd; size =    759808; name = CD\EMI2\ENDING00.EMI
+    file[]: crc = eb721662; size =    696320; name = CD\EMI2\ENDING01.EMI
+    file[]: crc = 92188a75; size =    768000; name = CD\EMI2\ENDING02.EMI
+    file[]: crc = d126ff16; size =    688128; name = CD\EMI2\ENDING03.EMI
+    file[]: crc = 32a172d2; size =   1744896; name = CD\EMI2\FIRST.EMI
+    file[]: crc = 715d7ace; size =    176128; name = CD\EMI2\GAME_OBJ.EMI
+    file[]: crc = 44c62178; size =    419840; name = CD\EMI2\HARD_END.EMI
+    file[]: crc = e369be49; size =    137216; name = CD\EMI2\IMG00.EMI
+    file[]: crc = a517ed06; size =    116736; name = CD\EMI2\IMG01.EMI
+    file[]: crc = 2e8e3214; size =    137216; name = CD\EMI2\IMG02.EMI
+    file[]: crc = 28b53e91; size =    137216; name = CD\EMI2\IMG03.EMI
+    file[]: crc = 8e9976a4; size =    116736; name = CD\EMI2\IMG04.EMI
+    file[]: crc = f5b16fc7; size =    126976; name = CD\EMI2\IMG05.EMI
+    file[]: crc = d92d52ca; size =    118784; name = CD\EMI2\IMG06.EMI
+    file[]: crc = 180a9644; size =    116736; name = CD\EMI2\IMG07.EMI
+    file[]: crc = ec334e86; size =     75776; name = CD\EMI2\IMG08.EMI
+    file[]: crc = 45aa0664; size =     67584; name = CD\EMI2\IMG09.EMI
+    file[]: crc = 4b89f497; size =     67584; name = CD\EMI2\IMG10.EMI
+    file[]: crc = 7538965b; size =     79872; name = CD\EMI2\IMG11.EMI
+    file[]: crc = cb19d007; size =     69632; name = CD\EMI2\IMG12.EMI
+    file[]: crc = 7b08bcaf; size =     67584; name = CD\EMI2\IMG13.EMI
+    file[]: crc = cff8f729; size =     69632; name = CD\EMI2\IMG14.EMI
+    file[]: crc = 575440ec; size =     79872; name = CD\EMI2\IMG15.EMI
+    file[]: crc = 15cca8ce; size =     69632; name = CD\EMI2\IMG16.EMI
+    file[]: crc = e99bda20; size =     69632; name = CD\EMI2\IMG17.EMI
+    file[]: crc = 3c93360a; size =     65536; name = CD\EMI2\IMG18.EMI
+    file[]: crc = bdbc519a; size =     71680; name = CD\EMI2\IMG19.EMI
+    file[]: crc = 0d85ac44; size =     75776; name = CD\EMI2\IMG20.EMI
+    file[]: crc = 90581bb3; size =     98304; name = CD\EMI2\INST.EMI
+    file[]: crc = 59281cae; size =     33706; name = CD\EMI2\MAINCOL.BIN
+    file[]: crc = 967fdc6e; size =    374784; name = CD\EMI2\PL00_OBJ.EMI
+    file[]: crc = b5ef1296; size =    237568; name = CD\EMI2\PL01_OBJ.EMI
+    file[]: crc = c692e532; size =    235520; name = CD\EMI2\PL02_OBJ.EMI
+    file[]: crc = c4a7fe70; size =    163840; name = CD\EMI2\PL03_OBJ.EMI
+    file[]: crc = f50718eb; size =    266240; name = CD\EMI2\PL04_OBJ.EMI
+    file[]: crc = e4c7ec9a; size =    282624; name = CD\EMI2\PL05_OBJ.EMI
+    file[]: crc = 2937fd7d; size =    235520; name = CD\EMI2\PL06_OBJ.EMI
+    file[]: crc = b5cc65d3; size =    307200; name = CD\EMI2\PL07_OBJ.EMI
+    file[]: crc = 2cdc7e32; size =    342016; name = CD\EMI2\PL08_OBJ.EMI
+    file[]: crc = 88b9e7ec; size =    243712; name = CD\EMI2\PL09_OBJ.EMI
+    file[]: crc = ccd284fe; size =     45056; name = CD\EMI2\PL0A_OBJ.EMI
+    file[]: crc = 52d9e54c; size =    292864; name = CD\EMI2\PL9A_OBJ.EMI
+    file[]: crc = 4d0b6146; size =    157696; name = CD\EMI2\SE_COMN.EMI
+    file[]: crc = 177af2ec; size =    135168; name = CD\EMI2\SE_COMN2.EMI
+    file[]: crc = c0ec59d5; size =     61440; name = CD\EMI2\SE_CONT.EMI
+    file[]: crc = 05a3568c; size =    194560; name = CD\EMI2\SE_END.EMI
+    file[]: crc = 79cc9a4f; size =    165888; name = CD\EMI2\SE_PL00.EMI
+    file[]: crc = bcbcf7ff; size =    147456; name = CD\EMI2\SE_PL01.EMI
+    file[]: crc = 7020b255; size =    110592; name = CD\EMI2\SE_PL02.EMI
+    file[]: crc = d5f5d8b8; size =    139264; name = CD\EMI2\SE_PL03.EMI
+    file[]: crc = f105608a; size =    192512; name = CD\EMI2\SE_PL04.EMI
+    file[]: crc = 9862dd12; size =    145408; name = CD\EMI2\SE_PL05.EMI
+    file[]: crc = dc5cb481; size =    186368; name = CD\EMI2\SE_PL06.EMI
+    file[]: crc = 0fb96399; size =    198656; name = CD\EMI2\SE_PL07.EMI
+    file[]: crc = 6a24cdab; size =    194560; name = CD\EMI2\SE_PL08.EMI
+    file[]: crc = c379a78c; size =    110592; name = CD\EMI2\SE_PL09.EMI
+    file[]: crc = ef71e1e4; size =    188416; name = CD\EMI2\SE_PL0A.EMI
+    file[]: crc = 1471f81f; size =    133120; name = CD\EMI2\SE_SEL.EMI
+    file[]: crc = b10530dd; size =    575488; name = CD\EMI2\SELECT.EMI
+    file[]: crc = e8f48488; size =    101618; name = CD\EMI2\SIDE16B.BIN
+    file[]: crc = 88b7eaee; size =     99023; name = CD\EMI2\SIDE16BU.BIN
+    file[]: crc = 19007c3d; size =     59059; name = CD\EMI2\SIDE8B.BIN
+    file[]: crc = c1e55576; size =     57091; name = CD\EMI2\SIDE8BU.BIN
+    file[]: crc = 54ccbf8c; size =    270336; name = CD\EMI2\STAGE00.EMI
+    file[]: crc = ed64d312; size =    270336; name = CD\EMI2\STAGE01.EMI
+    file[]: crc = 8994d914; size =    270336; name = CD\EMI2\STAGE02.EMI
+    file[]: crc = 07852d8f; size =    270336; name = CD\EMI2\STAGE03.EMI
+    file[]: crc = 5282e0d1; size =    270336; name = CD\EMI2\STAGE04.EMI
+    file[]: crc = fa210c08; size =    270336; name = CD\EMI2\STAGE05.EMI
+    file[]: crc = 60677b49; size =    270336; name = CD\EMI2\STAGE06.EMI
+    file[]: crc = a92214ad; size =    270336; name = CD\EMI2\STAGE07.EMI
+    file[]: crc = fea1b37e; size =    270336; name = CD\EMI2\STAGE08.EMI
+    file[]: crc = 9da99912; size =    270336; name = CD\EMI2\STAGE09.EMI
+    file[]: crc = baaee1d6; size =    307640; name = CD\GOODIES\BMP001.BMP
+    file[]: crc = fc8f7b17; size =    308280; name = CD\GOODIES\BMP002.BMP
+    file[]: crc = 517548b0; size =    308280; name = CD\GOODIES\BMP003.BMP
+    file[]: crc = 1a53e3a0; size =    308284; name = CD\GOODIES\BMP004.BMP
+    file[]: crc = a86ac46d; size =    308280; name = CD\GOODIES\BMP005.BMP
+    file[]: crc = 5a92fb5f; size =    308280; name = CD\GOODIES\BMP006.BMP
+    file[]: crc = f41b3c1a; size =    308280; name = CD\GOODIES\BMP007.BMP
+    file[]: crc = 32a172c4; size =    308280; name = CD\GOODIES\BMP008.BMP
+    file[]: crc = dfd61b38; size =    308280; name = CD\GOODIES\BMP009.BMP
+    file[]: crc = e6328fc8; size =    308280; name = CD\GOODIES\BMP010.BMP
+    file[]: crc = c9ab7396; size =    308280; name = CD\GOODIES\BMP011.BMP
+    file[]: crc = e661942c; size =    308280; name = CD\GOODIES\BMP012.BMP
+    file[]: crc = 175139c1; size =    231880; name = CD\GOODIES\BMP013.BMP
+    file[]: crc = 0a90fccf; size =    285240; name = CD\GOODIES\BMP014.BMP
+    file[]: crc = b68efa4b; size =    308280; name = CD\GOODIES\BMP015.BMP
+    file[]: crc = 6628a1d3; size =    296760; name = CD\GOODIES\BMP016.BMP
+    file[]: crc = dbfc99f2; size =    247480; name = CD\GOODIES\BMP017.BMP
+    file[]: crc = ecbb859e; size =    289080; name = CD\GOODIES\BMP018.BMP
+    file[]: crc = eaee34e4; size =    308280; name = CD\GOODIES\BMP019.BMP
+    file[]: crc = fcd61b10; size =   2083321; name = CD\GOODIES\SPFTHEME.ZIP
+    file[]: crc = 80109bc6; size =    145422; name = CD\ILLUST\CHIRA.LZF
+    file[]: crc = 2a8afd45; size =    170861; name = CD\ILLUST\CHIRAN.LZF
+    file[]: crc = 2f988bd3; size =    108299; name = CD\ILLUST\CHUN-LI.LZF
+    file[]: crc = 5c229443; size =    100647; name = CD\ILLUST\DAN01.LZF
+    file[]: crc = a4832aa2; size =    100377; name = CD\ILLUST\DAN02.LZF
+    file[]: crc = 0489aa94; size =    144791; name = CD\ILLUST\DEVILOT.LZF
+    file[]: crc = 7f8fd38b; size =    122518; name = CD\ILLUST\DONOVAN.LZF
+    file[]: crc = f2bab7b9; size =    103455; name = CD\ILLUST\FELICIA.LZF
+    file[]: crc = 37331d17; size =     86552; name = CD\ILLUST\GOUKI.LZF
+    file[]: crc = 229936d4; size =    156081; name = CD\ILLUST\INST1.LZF
+    file[]: crc = 41b50d85; size =    169789; name = CD\ILLUST\INST2.LZF
+    file[]: crc = e046dca1; size =     77662; name = CD\ILLUST\KEN.LZF
+    file[]: crc = a4aa45e6; size =     80680; name = CD\ILLUST\KOUKOKU.LZF
+    file[]: crc = 7a0343b0; size =    100663; name = CD\ILLUST\LEILEI.LZF
+    file[]: crc = 53c7ca70; size =    103012; name = CD\ILLUST\MORRIGAN.LZF
+    file[]: crc = 6fd03b44; size =    167062; name = CD\ILLUST\MUKKU.LZF
+    file[]: crc = 3e5b9c03; size =    107117; name = CD\ILLUST\PAZU.LZF
+    file[]: crc = 64b3021d; size =     79468; name = CD\ILLUST\RYU.LZF
+    file[]: crc = d240a7b4; size =     86541; name = CD\ILLUST\SAKURA.LZF
+    file[]: crc = b2bb82f2; size =       853; name = CD\ILLUST\SIZE.TXT
+    file[]: crc = 9f405e53; size =    752351; name = CD\PLW\CHUNLI.PLW
+    file[]: crc = 5c67a537; size =   1422917; name = CD\PLW\COMMON.PLW
+    file[]: crc = ccddba1a; size =    191004; name = CD\PLW\CONTINUE.PLW
+    file[]: crc = fc84a6ae; size =    977185; name = CD\PLW\DAN.PLW
+    file[]: crc = b1d9a925; size =    914587; name = CD\PLW\DEVILOT.PLW
+    file[]: crc = b1d9a925; size =    914587; name = CD\PLW\DEVIROT.PLW
+    file[]: crc = 1a7eb260; size =    724305; name = CD\PLW\DONOBAN.PLW
+    file[]: crc = 39dda714; size =    726232; name = CD\PLW\ENDING.PLW
+    file[]: crc = c781cfba; size =    972394; name = CD\PLW\FELICIA.PLW
+    file[]: crc = 75836118; size =    347603; name = CD\PLW\GOUKI.PLW
+    file[]: crc = 3d20b62d; size =    703537; name = CD\PLW\KEN.PLW
+    file[]: crc = 16ab5a2b; size =   1069396; name = CD\PLW\LEILEI.PLW
+    file[]: crc = bc297b08; size =    767479; name = CD\PLW\MORIGAN.PLW
+    file[]: crc = 48b7d3ea; size =    552989; name = CD\PLW\RYU.PLW
+    file[]: crc = ac2f8117; size =   1032555; name = CD\PLW\SAKURA.PLW
+    file[]: crc = 14026700; size =    492412; name = CD\PLW\SELECT.PLW
+	
+	EXENAME = EXEC_ST
+	CDLABEL = SPF2XT
+end
+	
+end

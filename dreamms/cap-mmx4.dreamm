@@ -1,0 +1,550 @@
+//
+// Mega Man X4 / Rockman X4
+//
+desc[cap-mmx4]:
+
+name = Mega Man X4 / Rockman X4
+icon = cap-mmx4.png
+machine = pc
+rootpath = C:\MEGAMANX4
+launch = "$(rootpath)\$(EXENAME).exe"
+osenv = windows 95
+winres = 640x480x8
+
+
+
+//
+// filesystem
+//
+mount[]: vpath = C:\; srcpath = $(ifsdeltapath); writable = true
+mount[]: vpath = $(rootpath); srcpath = $(ifsinstallpath)
+mount[]: vpath = D:\; srcpath = $(ifsinstallpath)\CD; optional = true
+
+//
+// dynamic files
+//
+dynamicfile[]: path = D:\$(CDLABEL); attributes = 8; contents = $(NULL)
+
+//
+// registry
+//
+script[registry]: code = winregistry_import_file("C:\\DREAMM.REG")
+dynamicfile[]:
+    path = C:\DREAMM.REG
+    contents = [[[$(CRLF)
+        REGEDIT4
+		[HKEY_LOCAL_MACHINE\SOFTWARE\CAPCOM\MEGAMAN X4]
+		"BgmPath"="$$(rootpath)\BGM"
+		"CD Drive"="D:\\"
+		"DataPath"="$$(rootpath)\ARC"
+		"Install BGM"="True"
+		"Install Directory"="$$(rootpath)"
+		"Install Movie"="True"
+		"Install Program"="True"
+		"Install Resource"="True"
+		"Install SE"="True"
+		"MoviePath"="$$(rootpath)\STR"
+		"SePath"="$$(rootpath)\SE"
+		]]]
+
+end
+
+fragment[common]:
+    file[]: crc = a42693d3; size =      8192; name = ARC\CAPCOM.ARC
+	file[]: crc = e4dc24fc; size =      6144; name = ARC\COL0D_0X.ARC
+    file[]: crc = 5ad915f0; size =      6144; name = ARC\COL0D_0Z.ARC
+    file[]: crc = cdfd2556; size =      8464; name = ARC\EXIT.BIN
+    file[]: crc = ed82f17e; size =      8192; name = ARC\FONT8X8.ARC
+    file[]: crc = 9aa381c3; size =    161792; name = ARC\ONPARE4.ARC
+    file[]: crc = 57112ea7; size =     65536; name = ARC\PAL000.DAT
+    file[]: crc = 80997f5c; size =     65536; name = ARC\PAL010.DAT
+    file[]: crc = 31126de3; size =     65536; name = ARC\PAL100.DAT
+    file[]: crc = 82e37baf; size =     65536; name = ARC\PAL110.DAT
+    file[]: crc = b079fb3b; size =     65536; name = ARC\PAL200.DAT
+    file[]: crc = 33abf5ce; size =     65536; name = ARC\PAL210.DAT
+    file[]: crc = b91f76cf; size =     65536; name = ARC\PAL300.DAT
+    file[]: crc = b58f536d; size =     65536; name = ARC\PAL310.DAT
+    file[]: crc = dc0b5b2c; size =     65536; name = ARC\PAL400.DAT
+    file[]: crc = 8b49d91e; size =     65536; name = ARC\PAL410.DAT
+    file[]: crc = e0d1c762; size =     65536; name = ARC\PAL500.DAT
+    file[]: crc = 6b7a5931; size =     65536; name = ARC\PAL510.DAT
+    file[]: crc = 65ba2b97; size =     65536; name = ARC\PAL600.DAT
+    file[]: crc = cfa1627b; size =     65536; name = ARC\PAL610.DAT
+    file[]: crc = 18a2746a; size =     65536; name = ARC\PAL700.DAT
+    file[]: crc = 96923beb; size =     65536; name = ARC\PAL710.DAT
+    file[]: crc = a8554b35; size =     65536; name = ARC\PAL800.DAT
+    file[]: crc = b767249f; size =     65536; name = ARC\PAL810.DAT
+    file[]: crc = 91881458; size =     65536; name = ARC\PAL900.DAT
+    file[]: crc = ebace953; size =     65536; name = ARC\PAL910.DAT
+    file[]: crc = 5e351922; size =     65536; name = ARC\PALA00.DAT
+    file[]: crc = ebace953; size =     65536; name = ARC\PALA10.DAT
+    file[]: crc = d629b9e2; size =     65536; name = ARC\PALB00.DAT
+    file[]: crc = 18dd2f36; size =     65536; name = ARC\PALB10.DAT
+    file[]: crc = 3e4494aa; size =     65536; name = ARC\PALC00.DAT
+    file[]: crc = d8bb7dab; size =     65536; name = ARC\PALC10.DAT
+    file[]: crc = 174730fa; size =     65536; name = ARC\PALD00.DAT
+    file[]: crc = ebace953; size =     65536; name = ARC\PALD10.DAT
+    file[]: crc = ebace953; size =     65536; name = ARC\PALE00.DAT
+    file[]: crc = 7f200d08; size =     65536; name = ARC\PALE10.DAT
+    file[]: crc = ebace953; size =     65536; name = ARC\PALF00.DAT
+    file[]: crc = ff0588e1; size =     65536; name = ARC\PALF10.DAT
+    file[]: crc = 9652dd2c; size =      1256; name = ARC\PL00SEP.ARC
+    file[]: crc = 9652dd2c; size =      1256; name = ARC\PL01SEP.ARC
+    file[]: crc = c25fb056; size =      8192; name = ARC\PLDEMO.ARC
+    file[]: crc = 029bc08d; size =      8192; name = ARC\PLDEMO00.ARC
+    file[]: crc = 581b8bc6; size =      8192; name = ARC\PLDEMO01.ARC
+    file[]: crc = f0b9cdbf; size =      8192; name = ARC\PLDEMO02.ARC
+    file[]: crc = a65e320f; size =      8192; name = ARC\PLDEMO03.ARC
+    file[]: crc = 82127947; size =      8288; name = ARC\RETURN.BIN
+    file[]: crc = cf1a636f; size =    598016; name = ARC\ST00_00.ARC
+    file[]: crc = de6f38df; size =    440320; name = ARC\ST00_01.ARC
+    file[]: crc = 9486eca4; size =    520192; name = ARC\ST01_00.ARC
+    file[]: crc = d55169a7; size =    585728; name = ARC\ST01_01.ARC
+    file[]: crc = c1457d7d; size =    614400; name = ARC\ST02_00.ARC
+    file[]: crc = 2372a7ff; size =    573440; name = ARC\ST02_01.ARC
+    file[]: crc = 5a031802; size =    499712; name = ARC\ST03_00.ARC
+    file[]: crc = 9901f264; size =    528384; name = ARC\ST03_01.ARC
+    file[]: crc = 68d2a304; size =    544768; name = ARC\ST04_00.ARC
+    file[]: crc = 4ef05df3; size =    593920; name = ARC\ST04_01.ARC
+    file[]: crc = 879f7a0f; size =    417792; name = ARC\ST05_00.ARC
+    file[]: crc = 3ed77a4e; size =    454656; name = ARC\ST05_01.ARC
+    file[]: crc = be427874; size =    442368; name = ARC\ST06_00.ARC
+    file[]: crc = f7e1e5b7; size =    497664; name = ARC\ST06_01.ARC
+    file[]: crc = 6df87a53; size =    516096; name = ARC\ST07_00.ARC
+    file[]: crc = 91676806; size =    335872; name = ARC\ST07_01.ARC
+    file[]: crc = e219894e; size =    425984; name = ARC\ST08_00.ARC
+    file[]: crc = 0838b43f; size =    559104; name = ARC\ST08_01.ARC
+    file[]: crc = 3b1b3e0a; size =    243712; name = ARC\ST09_00.ARC
+    file[]: crc = 494f48ca; size =    204800; name = ARC\ST0_1_1.ARC
+    file[]: crc = ca41bc46; size =    434176; name = ARC\ST0A_00.ARC
+    file[]: crc = 3b0b00df; size =    497664; name = ARC\ST0B_01.ARC
+    file[]: crc = a42c47ef; size =    354304; name = ARC\ST0B_0Z.ARC
+    file[]: crc = ff1f1db8; size =    434176; name = ARC\ST0C_00.ARC	
+    file[]: crc = 2397918d; size =    231424; name = ARC\ST0D_0X.ARC
+    file[]: crc = 0bdddb7e; size =    227328; name = ARC\ST0D_0Z.ARC
+    file[]: crc = 9b437cfd; size =    139264; name = ARC\ST4_1_1.ARC
+    file[]: crc = f783118a; size =    200704; name = ARC\STB_1_1.ARC
+    file[]: crc = 82ed98ec; size =   7549744; name = BGM\BGM00.SE
+    file[]: crc = 77f36551; size =   7427632; name = BGM\BGM02.SE //Fliped these to correct Sigma 1st/2nd songs
+    file[]: crc = 5abbd516; size =   7645616; name = BGM\BGM01.SE //Fliped these to correct Sigma 1st/2nd songs
+    file[]: crc = 7eaa45e4; size =   7223808; name = BGM\BGM03.SE
+    file[]: crc = ba3e8959; size =   7234296; name = BGM\BGM04.SE
+    file[]: crc = e3a98a91; size =   7141296; name = BGM\BGM05.SE
+    file[]: crc = 7da4d7c6; size =   7030064; name = BGM\BGM06.SE
+    file[]: crc = 0313cefa; size =   7010864; name = BGM\BGM07.SE
+    file[]: crc = 748645af; size =   6873776; name = BGM\BGM08.SE
+    file[]: crc = eee66f1d; size =   6590028; name = BGM\BGM09.SE
+    file[]: crc = 04b30966; size =   6414478; name = BGM\BGM10.SE
+    file[]: crc = 31c14562; size =   6325168; name = BGM\BGM11.SE
+    file[]: crc = c064bec7; size =   6031664; name = BGM\BGM12.SE
+    file[]: crc = 7e8be157; size =   5932976; name = BGM\BGM13.SE
+    file[]: crc = 5430461f; size =   5609136; name = BGM\BGM14.SE
+    file[]: crc = 542d78bb; size =   5464404; name = BGM\BGM15.SE
+    file[]: crc = 8e4cd6a9; size =   5204320; name = BGM\BGM16.SE
+    file[]: crc = 8ff57238; size =   4954160; name = BGM\BGM17.SE
+    file[]: crc = fedab474; size =   4747308; name = BGM\BGM18.SE
+    file[]: crc = a36a817e; size =   4101800; name = BGM\BGM19.SE
+    file[]: crc = b62026bf; size =   3908144; name = BGM\BGM20.SE
+    file[]: crc = a1f30228; size =   3780108; name = BGM\BGM21.SE
+    file[]: crc = 8cfe3656; size =   3609264; name = BGM\BGM22.SE
+    file[]: crc = 15aba3e9; size =   3208540; name = BGM\BGM23.SE
+    file[]: crc = 3bb10027; size =   3039280; name = BGM\BGM24.SE
+    file[]: crc = a6781ffe; size =   2848594; name = BGM\BGM25.SE
+    file[]: crc = 1cf32b43; size =   2759984; name = BGM\BGM26.SE
+    file[]: crc = 89dc3692; size =   2693980; name = BGM\BGM27.SE
+    file[]: crc = 6f00c6fb; size =   2321456; name = BGM\BGM28.SE
+    file[]: crc = 72cb1948; size =    296240; name = BGM\BGM30.SE
+    file[]: crc = 7f85cf8b; size =    269872; name = BGM\BGM31.SE
+    file[]: crc = 8635db39; size =    104909; name = SE\SE00_A00.SEZ
+    file[]: crc = 1763fdae; size =    209893; name = SE\SE00_A10.SEZ
+    file[]: crc = dec59bee; size =    249619; name = SE\SE00_E00.SEZ
+    file[]: crc = daa79a9e; size =    175897; name = SE\SE00_E10.SEZ
+    file[]: crc = 73346ff7; size =    231602; name = SE\SE00_E11.SEZ
+    file[]: crc = 81ef4c36; size =    554878; name = SE\SE01_A00.SEZ
+    file[]: crc = 4c71e438; size =    268124; name = SE\SE01_A10.SEZ
+    file[]: crc = 4b8357bc; size =    209606; name = SE\SE01_E00.SEZ
+    file[]: crc = 77e0d00b; size =     77753; name = SE\SE01_E10.SEZ
+    file[]: crc = 0ec85799; size =    168902; name = SE\SE01_E11.SEZ
+    file[]: crc = fd6aa4cf; size =    192329; name = SE\SE02_A00.SEZ
+    file[]: crc = 91687e28; size =    251405; name = SE\SE02_E00.SEZ
+    file[]: crc = 0a22221b; size =    341890; name = SE\SE02_E10.SEZ
+    file[]: crc = b7b5881e; size =    139857; name = SE\SE03_A00.SEZ
+    file[]: crc = 48395f92; size =    567142; name = SE\SE03_A10.SEZ
+    file[]: crc = d133cad5; size =    321726; name = SE\SE03_E00.SEZ
+    file[]: crc = 3f681c3c; size =    498987; name = SE\SE_PL00.SEZ
+    file[]: crc = 05f86692; size =    203223; name = SE\SE_PL01.SEZ
+    file[]: crc = 96ea6400; size =     68589; name = SE\SE_PLSEL.SEZ
+    file[]: crc = 8d51c58f; size =     80591; name = SE\SE_STSEL.SEZ
+	
+	//CD-ROM
+    file[]: crc = c8d9fdbb; size =         7; name = CD\X4.ID
+
+end
+
+game[pc-cd-en]:
+	name = English CD
+	imports = common
+	anchorfile = x4.id
+    file[]: crc = 90eabc50; size =    958464; name = MMX4.exe
+    file[]: crc = b7c0f122; size =      6144; name = ARC\COL00_0X.ARC
+    file[]: crc = 7d8d3164; size =      6144; name = ARC\COL00_0Z.ARC
+    file[]: crc = 66d0e74e; size =      6144; name = ARC\COL00_1X.ARC
+    file[]: crc = ac9d2708; size =      6144; name = ARC\COL00_1Z.ARC
+    file[]: crc = a8fb6ee1; size =      6144; name = ARC\COL01_0X.ARC
+    file[]: crc = 62b6aea7; size =      6144; name = ARC\COL01_0Z.ARC
+    file[]: crc = ee28bcea; size =      6144; name = ARC\COL01_1X.ARC
+    file[]: crc = 24657cac; size =      6144; name = ARC\COL01_1Z.ARC
+    file[]: crc = e8e16b9b; size =      6144; name = ARC\COL02_0X.ARC
+    file[]: crc = 22acabdd; size =      6144; name = ARC\COL02_0Z.ARC
+    file[]: crc = 1c4067d4; size =      6144; name = ARC\COL02_1X.ARC
+    file[]: crc = d60da792; size =      6144; name = ARC\COL02_1Z.ARC
+    file[]: crc = 63a5f608; size =      6144; name = ARC\COL03_0X.ARC
+    file[]: crc = a9e8364e; size =      6144; name = ARC\COL03_0Z.ARC
+    file[]: crc = 869f4bb5; size =      6144; name = ARC\COL03_1X.ARC
+    file[]: crc = 4cd28bf3; size =      6144; name = ARC\COL03_1Z.ARC
+    file[]: crc = 446d093f; size =      6144; name = ARC\COL04_0X.ARC
+    file[]: crc = 8e20c979; size =      6144; name = ARC\COL04_0Z.ARC
+    file[]: crc = 4dfe259f; size =      6144; name = ARC\COL04_1X.ARC
+    file[]: crc = 87b3e5d9; size =      6144; name = ARC\COL04_1Z.ARC
+    file[]: crc = 7060daf4; size =      6144; name = ARC\COL05_0X.ARC
+    file[]: crc = ba2d1ab2; size =      6144; name = ARC\COL05_0Z.ARC
+    file[]: crc = d40eb9ae; size =      6144; name = ARC\COL05_1X.ARC
+    file[]: crc = 1e4379e8; size =      6144; name = ARC\COL05_1Z.ARC
+    file[]: crc = 27358c94; size =      6144; name = ARC\COL06_0X.ARC
+    file[]: crc = ed784cd2; size =      6144; name = ARC\COL06_0Z.ARC
+    file[]: crc = 8f9adc2d; size =      6144; name = ARC\COL06_1X.ARC
+    file[]: crc = 45d71c6b; size =      6144; name = ARC\COL06_1Z.ARC
+    file[]: crc = 86870b5e; size =      6144; name = ARC\COL07_0X.ARC
+    file[]: crc = 4ccacb18; size =      6144; name = ARC\COL07_0Z.ARC
+    file[]: crc = bf67f091; size =      6144; name = ARC\COL07_1X.ARC
+    file[]: crc = 752a30d7; size =      6144; name = ARC\COL07_1Z.ARC
+    file[]: crc = 5f142b42; size =      6144; name = ARC\COL08_0X.ARC
+    file[]: crc = 9559eb04; size =      6144; name = ARC\COL08_0Z.ARC
+    file[]: crc = c5ceeabe; size =      6144; name = ARC\COL08_1X.ARC
+    file[]: crc = 0f832af8; size =      6144; name = ARC\COL08_1Z.ARC
+    file[]: crc = 63542f7a; size =      6144; name = ARC\COL09_0X.ARC
+    file[]: crc = a919ef3c; size =      6144; name = ARC\COL09_0Z.ARC
+    file[]: crc = 67560b92; size =      6144; name = ARC\COL0A_0X.ARC
+    file[]: crc = ad1bcbd4; size =      6144; name = ARC\COL0A_0Z.ARC
+    file[]: crc = 7d9eff1b; size =      6144; name = ARC\COL0B_0X.ARC
+    file[]: crc = 4bec399f; size =      6144; name = ARC\COL0B_0Z.ARC
+    file[]: crc = 6a519700; size =      6144; name = ARC\COL0B_1X.ARC
+    file[]: crc = a01c5746; size =      6144; name = ARC\COL0B_1Z.ARC
+    file[]: crc = c0604097; size =      6144; name = ARC\COL0C_0X.ARC
+    file[]: crc = 0a2d80d1; size =      6144; name = ARC\COL0C_0Z.ARC
+    file[]: crc = aeb7cdaf; size =      6144; name = ARC\COL0C_1X.ARC
+    file[]: crc = 64fa0de9; size =      6144; name = ARC\COL0C_1Z.ARC
+    file[]: crc = 1b53ce5d; size =      6144; name = ARC\COL0E_U0.ARC
+    file[]: crc = b0b386e3; size =      6144; name = ARC\COL0E_U1.ARC
+    file[]: crc = eef81838; size =      6144; name = ARC\COL0F_U0.ARC
+    file[]: crc = 643bbab8; size =      6144; name = ARC\COL0F_U1.ARC
+    file[]: crc = 00df706b; size =      6144; name = ARC\COLD_1U1.ARC
+    file[]: crc = 10523007; size =      6144; name = ARC\COLD_1U2.ARC
+    file[]: crc = 2464383d; size =      6144; name = ARC\COLD_1U3.ARC
+    file[]: crc = f003241f; size =      6144; name = ARC\COLD_1U4.ARC
+    file[]: crc = 3aef4541; size =      6144; name = ARC\COLD_1U5.ARC
+    file[]: crc = b6856310; size =      6144; name = ARC\COLD_1U6.ARC
+    file[]: crc = 57610b65; size =      6144; name = ARC\COLD_1U7.ARC
+    file[]: crc = d5956df4; size =      6144; name = ARC\COLD_1U8.ARC
+    file[]: crc = c892bafe; size =    100352; name = ARC\LOAD_U.ARC
+    file[]: crc = 0c3b451c; size =     11052; name = ARC\mojipat.arc
+    file[]: crc = 1c93e3fb; size =    114688; name = ARC\ONPARE1.ARC
+    file[]: crc = fe548826; size =    172032; name = ARC\ONPARE2.ARC
+    file[]: crc = de979376; size =    118784; name = ARC\ONPARE3.ARC
+    file[]: crc = 1730688e; size =    153600; name = ARC\ONPARE5.ARC
+    file[]: crc = 1ed34daa; size =    163840; name = ARC\ONPARE6.ARC
+    file[]: crc = ea875e32; size =    110592; name = ARC\ONPARE7.ARC
+    file[]: crc = 64268949; size =    153600; name = ARC\ONPARE8.ARC
+    file[]: crc = dbf59b3e; size =    432128; name = ARC\PL00_U.ARC
+    file[]: crc = 9fd3be60; size =    434176; name = ARC\PL01_U.ARC
+    file[]: crc = 11890148; size =    432128; name = ARC\PL02_U.ARC
+    file[]: crc = 50580221; size =    387072; name = ARC\ST0B_0X.ARC
+    file[]: crc = 9e6576f1; size =    395264; name = ARC\ST0C_01.ARC
+    file[]: crc = e3ca27ba; size =    153600; name = ARC\ST0E_U0.ARC
+    file[]: crc = abd58f47; size =    178176; name = ARC\ST0E_U1.ARC
+    file[]: crc = 993734d6; size =    129024; name = ARC\ST0F_U1.ARC
+    file[]: crc = 15bc02c7; size =    233472; name = ARC\ST0F_UX.ARC
+    file[]: crc = f3105cf3; size =    233472; name = ARC\ST0F_UZ.ARC
+    file[]: crc = 55922a42; size =     96256; name = ARC\ST1_1_1.ARC
+    file[]: crc = 4bc70f4a; size =    141312; name = ARC\ST2_1_1.ARC
+    file[]: crc = 70f076f4; size =    104448; name = ARC\ST3_1_1.ARC
+    file[]: crc = 24a38654; size =    133120; name = ARC\ST5_1_1.ARC
+    file[]: crc = 31b5b0d5; size =    139264; name = ARC\ST6_1_1.ARC
+    file[]: crc = 72157ffc; size =     92160; name = ARC\ST7_1_1.ARC
+    file[]: crc = 2d94aa18; size =    139264; name = ARC\ST8_1_1.ARC
+    file[]: crc = 1215fd4e; size =    174080; name = ARC\STA_0_1.ARC
+    file[]: crc = f5c458a2; size =    206848; name = ARC\STC_1_1.ARC
+    file[]: crc = 6073aebe; size =    264192; name = ARC\STD_1_1U.ARC
+    file[]: crc = 6fa6d0f2; size =    319488; name = ARC\STD_1_2U.ARC
+    file[]: crc = 63c8214f; size =    268288; name = ARC\STD_1_3U.ARC
+    file[]: crc = 441a529c; size =    309248; name = ARC\STD_1_4U.ARC
+    file[]: crc = dc774205; size =    303104; name = ARC\STD_1_5U.ARC
+    file[]: crc = ed50d05f; size =    313344; name = ARC\STD_1_6U.ARC
+    file[]: crc = 13517b31; size =    260096; name = ARC\STD_1_7U.ARC
+    file[]: crc = 738e9a55; size =    303104; name = ARC\STD_1_8U.ARC
+    file[]: crc = 63a2e6ca; size =    452682; name = BGM\BGM29.SE
+    file[]: crc = def9fc76; size =    111640; name = BGM\VOICE00.SE
+    file[]: crc = 8727d33b; size =     85888; name = BGM\VOICE04.SE
+    file[]: crc = 2d8e4bc8; size =    117050; name = BGM\VOICE06.SE
+    file[]: crc = 9ee27025; size =     91532; name = BGM\VOICE07.SE
+    file[]: crc = 9fcf6f72; size =    100468; name = BGM\VOICE11.SE
+    file[]: crc = b529650e; size =    104584; name = BGM\VOICE12.SE
+    file[]: crc = c9f20051; size =     88240; name = BGM\VOICE23.SE
+    file[]: crc = c4375a5a; size =    150798; name = BGM\VOICE26.SE
+    file[]: crc = 0fdb35ec; size =    175020; name = BGM\VOICE30.SE
+    file[]: crc = de8f90a0; size =    180078; name = BGM\VOICE32.SE
+    file[]: crc = a33520ef; size =    117990; name = BGM\VOICE33.SE
+    file[]: crc = a45e7074; size =    135864; name = BGM\VOICE40.SE
+    file[]: crc = 9e0472a4; size =    120460; name = BGM\VOICE41.SE
+    file[]: crc = 042b8f87; size =    153266; name = BGM\VOICE42.SE
+    file[]: crc = bf8311d9; size =    196304; name = BGM\VOICE44.SE
+    file[]: crc = bb27b379; size =    167730; name = BGM\VOICE45.SE
+    file[]: crc = adbac062; size =    640694; name = BGM\VOICE50.SE
+    file[]: crc = dea0f254; size =    640694; name = BGM\VOICE51.SE
+    file[]: crc = d85c3d44; size =    640694; name = BGM\VOICE52.SE
+    file[]: crc = d350b7a4; size =    640694; name = BGM\VOICE53.SE
+    file[]: crc = f5ce7ced; size =    640694; name = BGM\VOICE54.SE
+    file[]: crc = 51b50ed8; size =    640694; name = BGM\VOICE55.SE
+    file[]: crc = 06d93fa2; size =    640694; name = BGM\VOICE56.SE
+    file[]: crc = a9d5f3cd; size =    640694; name = BGM\VOICE57.SE
+    file[]: crc = f8d53e8d; size =    416379; name = SE\SE02_E11.SEZ
+    file[]: crc = b1e0aca4; size =    121446; name = SE\SE03_E10.SEZ
+    file[]: crc = 09d8a9fd; size =    141836; name = SE\SE03_E11.SEZ
+    file[]: crc = 5896597f; size =    154809; name = SE\SE04_A10.SEZ
+    file[]: crc = 223da3ca; size =    196954; name = SE\SE04_E00.SEZ
+    file[]: crc = e4306b5f; size =    488232; name = SE\SE04_E10.SEZ
+    file[]: crc = 2dfa2ba8; size =    244544; name = SE\SE04_E11.SEZ
+    file[]: crc = 8a333596; size =    111250; name = SE\SE05_A00.SEZ
+    file[]: crc = 0bb4223e; size =    287895; name = SE\SE05_E11.SEZ
+    file[]: crc = 18ef2d50; size =    375211; name = SE\SE06_E00.SEZ
+    file[]: crc = 049c5335; size =    205879; name = SE\SE06_E10.SEZ
+    file[]: crc = ca3201c1; size =    201583; name = SE\SE06_E11.SEZ
+    file[]: crc = 06392c18; size =    288286; name = SE\SE07_A00.SEZ
+    file[]: crc = dc485700; size =    708989; name = SE\SE07_E00.SEZ
+    file[]: crc = eeda352c; size =    330592; name = SE\SE07_E10.SEZ
+    file[]: crc = a92601fd; size =    213232; name = SE\SE07_E11.SEZ
+    file[]: crc = 4a079447; size =    127074; name = SE\SE08_A00.SEZ
+    file[]: crc = bc13b9a5; size =    469013; name = SE\SE08_A10.SEZ
+    file[]: crc = e1a6e1e9; size =    282955; name = SE\SE08_E00.SEZ
+    file[]: crc = 796c1cf0; size =    301075; name = SE\SE08_E10.SEZ
+    file[]: crc = cca28e68; size =    298425; name = SE\SE08_E11.SEZ
+    file[]: crc = 0c306635; size =     56399; name = SE\SE0A_E00.SEZ
+    file[]: crc = dceead6b; size =    447690; name = SE\SE0A_E11.SEZ
+    file[]: crc = 06392c18; size =    288286; name = SE\SE0B_A10.SEZ
+    file[]: crc = 7dc1b521; size =    605272; name = SE\SE0B_E00.SEZ
+    file[]: crc = e5dbf9f1; size =    574136; name = SE\SE0B_E01.SEZ
+    file[]: crc = 44c329fc; size =    580598; name = SE\SE0B_E10.SEZ
+    file[]: crc = abd38fb3; size =    493071; name = SE\SE0B_E11.SEZ
+    file[]: crc = 8a57ffc9; size =    254994; name = SE\SE0C_A00.SEZ
+    file[]: crc = 3f8fb87c; size =     34680; name = SE\SE0C_A12.SEZ
+    file[]: crc = a3720f89; size =     60214; name = SE\SE0C_E00.SEZ
+    file[]: crc = 025d94a0; size =    684943; name = SE\SE0C_E11.SEZ
+    file[]: crc = 76755834; size =    495671; name = SE\SE0C_E12.SEZ
+    file[]: crc = 8e24ede1; size =    894193; name = SE\SE_COM.SEZ
+    file[]: crc = cd545078; size =    527256; name = SE\SE_WEP00.SEZ
+    file[]: crc = e2bd78a6; size =    480426; name = SE\SE_WEP01.SEZ
+    file[]: crc = 560e9b02; size =    213266; name = SE\VO_PL00.SEZ
+    file[]: crc = 5a50b771; size =    238920; name = SE\VO_PL01.SEZ
+    file[]: crc = dc55b2db; size =   1734492; name = STR\capcom.avi
+    file[]: crc = 7cb7d201; size =  19918284; name = STR\WOP.AVI
+    file[]: crc = 71ff63d0; size =  10618012; name = STR\WX1.AVI
+    file[]: crc = f643ecb9; size =  16493532; name = STR\WX2.AVI
+    file[]: crc = 884c87f9; size =  14852332; name = STR\WX3.AVI
+    file[]: crc = 0952dfd8; size =  16746412; name = STR\WX4.AVI
+    file[]: crc = b954bfa4; size =  11491804; name = STR\WZ1.AVI
+    file[]: crc = e05b279c; size =  14886636; name = STR\WZ2.AVI
+    file[]: crc = 51bb6a28; size =  12528636; name = STR\WZ3.AVI
+    file[]: crc = 638b13d6; size =  44606700; name = STR\WZ4.AVI
+    file[]: crc = e580a4b5; size =  12542220; name = STR\WZ5.AVI
+
+	EXENAME = mmx4
+	CDLABEL = MegamanX4
+end
+
+game[pc-cd-jp]:
+	name = Japanese CD
+	imports = common
+	anchorfile = x4.id
+    file[]: crc = df68f3dc; size =    958464; name = RMX4.EXE
+    file[]: crc = 7d50e0e1; size =      6144; name = ARC\COL00_0X.ARC
+    file[]: crc = b71d20a7; size =      6144; name = ARC\COL00_0Z.ARC
+    file[]: crc = ac40f68d; size =      6144; name = ARC\COL00_1X.ARC
+    file[]: crc = 660d36cb; size =      6144; name = ARC\COL00_1Z.ARC
+    file[]: crc = 626b7f22; size =      6144; name = ARC\COL01_0X.ARC
+    file[]: crc = a826bf64; size =      6144; name = ARC\COL01_0Z.ARC
+    file[]: crc = 24b8ad29; size =      6144; name = ARC\COL01_1X.ARC
+    file[]: crc = eef56d6f; size =      6144; name = ARC\COL01_1Z.ARC
+    file[]: crc = 22717a58; size =      6144; name = ARC\COL02_0X.ARC
+    file[]: crc = e83cba1e; size =      6144; name = ARC\COL02_0Z.ARC
+    file[]: crc = d6d07617; size =      6144; name = ARC\COL02_1X.ARC
+    file[]: crc = 1c9db651; size =      6144; name = ARC\COL02_1Z.ARC
+    file[]: crc = a935e7cb; size =      6144; name = ARC\COL03_0X.ARC
+    file[]: crc = 6378278d; size =      6144; name = ARC\COL03_0Z.ARC
+    file[]: crc = 4c0f5a76; size =      6144; name = ARC\COL03_1X.ARC
+    file[]: crc = 86429a30; size =      6144; name = ARC\COL03_1Z.ARC
+    file[]: crc = 8efd18fc; size =      6144; name = ARC\COL04_0X.ARC
+    file[]: crc = 44b0d8ba; size =      6144; name = ARC\COL04_0Z.ARC
+    file[]: crc = 876e345c; size =      6144; name = ARC\COL04_1X.ARC
+    file[]: crc = 4d23f41a; size =      6144; name = ARC\COL04_1Z.ARC
+    file[]: crc = baf0cb37; size =      6144; name = ARC\COL05_0X.ARC
+    file[]: crc = 70bd0b71; size =      6144; name = ARC\COL05_0Z.ARC
+    file[]: crc = 1e9ea86d; size =      6144; name = ARC\COL05_1X.ARC
+    file[]: crc = d4d3682b; size =      6144; name = ARC\COL05_1Z.ARC
+    file[]: crc = eda59d57; size =      6144; name = ARC\COL06_0X.ARC
+    file[]: crc = 27e85d11; size =      6144; name = ARC\COL06_0Z.ARC
+    file[]: crc = 450acdee; size =      6144; name = ARC\COL06_1X.ARC
+    file[]: crc = 8f470da8; size =      6144; name = ARC\COL06_1Z.ARC
+    file[]: crc = 4c171a9d; size =      6144; name = ARC\COL07_0X.ARC
+    file[]: crc = 865adadb; size =      6144; name = ARC\COL07_0Z.ARC
+    file[]: crc = 75f7e152; size =      6144; name = ARC\COL07_1X.ARC
+    file[]: crc = bfba2114; size =      6144; name = ARC\COL07_1Z.ARC
+    file[]: crc = 95843a81; size =      6144; name = ARC\COL08_0X.ARC
+    file[]: crc = 5fc9fac7; size =      6144; name = ARC\COL08_0Z.ARC
+    file[]: crc = 0f5efb7d; size =      6144; name = ARC\COL08_1X.ARC
+    file[]: crc = c5133b3b; size =      6144; name = ARC\COL08_1Z.ARC
+    file[]: crc = a9c43eb9; size =      6144; name = ARC\COL09_0X.ARC
+    file[]: crc = 6389feff; size =      6144; name = ARC\COL09_0Z.ARC
+    file[]: crc = adc61a51; size =      6144; name = ARC\COL0A_0X.ARC
+    file[]: crc = 678bda17; size =      6144; name = ARC\COL0A_0Z.ARC
+    file[]: crc = b70eeed8; size =      6144; name = ARC\COL0B_0X.ARC
+    file[]: crc = 817c285c; size =      6144; name = ARC\COL0B_0Z.ARC
+    file[]: crc = a0c186c3; size =      6144; name = ARC\COL0B_1X.ARC
+    file[]: crc = 6a8c4685; size =      6144; name = ARC\COL0B_1Z.ARC
+    file[]: crc = 0af05154; size =      6144; name = ARC\COL0C_0X.ARC
+    file[]: crc = c0bd9112; size =      6144; name = ARC\COL0C_0Z.ARC
+    file[]: crc = 6427dc6c; size =      6144; name = ARC\COL0C_1X.ARC
+    file[]: crc = ae6a1c2a; size =      6144; name = ARC\COL0C_1Z.ARC
+    file[]: crc = c476667c; size =      6144; name = ARC\COL0E_00.ARC
+    file[]: crc = 67d16aaf; size =      6144; name = ARC\COL0E_01.ARC
+    file[]: crc = c9766a0f; size =      6144; name = ARC\COL0F_00.ARC
+    file[]: crc = aeabab7b; size =      6144; name = ARC\COL0F_01.ARC
+    file[]: crc = 00df706b; size =      6144; name = ARC\COLD_1_1.ARC
+    file[]: crc = 10523007; size =      6144; name = ARC\COLD_1_2.ARC
+    file[]: crc = 2464383d; size =      6144; name = ARC\COLD_1_3.ARC
+    file[]: crc = f003241f; size =      6144; name = ARC\COLD_1_4.ARC
+    file[]: crc = 3aef4541; size =      6144; name = ARC\COLD_1_5.ARC
+    file[]: crc = b6856310; size =      6144; name = ARC\COLD_1_6.ARC
+    file[]: crc = 57610b65; size =      6144; name = ARC\COLD_1_7.ARC
+    file[]: crc = d5956df4; size =      6144; name = ARC\COLD_1_8.ARC
+    file[]: crc = 48fe4a8d; size =    100352; name = ARC\LOAD.ARC
+    file[]: crc = 3c1b5179; size =      9404; name = ARC\mojipat.arc
+    file[]: crc = 12652f53; size =     34816; name = ARC\mojiw1.arc
+    file[]: crc = ee157516; size =     34816; name = ARC\mojiw2.arc	
+    file[]: crc = c193d500; size =    114688; name = ARC\ONPARE1.ARC
+    file[]: crc = d945da62; size =    172032; name = ARC\ONPARE2.ARC
+    file[]: crc = 9d076bef; size =    118784; name = ARC\ONPARE3.ARC
+    file[]: crc = 6b13919f; size =    153600; name = ARC\ONPARE5.ARC
+    file[]: crc = 2e86e490; size =    163840; name = ARC\ONPARE6.ARC
+    file[]: crc = 068aa72f; size =    110592; name = ARC\ONPARE7.ARC
+    file[]: crc = 7544894d; size =    153600; name = ARC\ONPARE8.ARC
+    file[]: crc = ec7537fe; size =    423936; name = ARC\PL00.ARC
+    file[]: crc = e2d18a83; size =    430080; name = ARC\PL01.ARC
+    file[]: crc = 3bf3a4cc; size =    423936; name = ARC\PL02.ARC
+    file[]: crc = cc427aa2; size =    387072; name = ARC\ST0B_0X.ARC
+    file[]: crc = a62aa33e; size =    395264; name = ARC\ST0C_01.ARC
+    file[]: crc = 1b02aa54; size =    133120; name = ARC\ST0E_00.ARC
+    file[]: crc = a52e7f2b; size =    221184; name = ARC\ST0E_01.ARC
+    file[]: crc = 8e4f8ab7; size =    112640; name = ARC\ST0F_01.ARC
+    file[]: crc = 15675e83; size =    155648; name = ARC\ST0F_0X.ARC
+    file[]: crc = 48a2cb87; size =    155648; name = ARC\ST0F_0Z.ARC
+    file[]: crc = 88921cb9; size =     96256; name = ARC\ST1_1_1.ARC
+    file[]: crc = 6cd65d0e; size =    141312; name = ARC\ST2_1_1.ARC
+    file[]: crc = 33608e6d; size =    104448; name = ARC\ST3_1_1.ARC
+    file[]: crc = 58807f45; size =    133120; name = ARC\ST5_1_1.ARC
+    file[]: crc = 01e019ef; size =    139264; name = ARC\ST6_1_1.ARC
+    file[]: crc = 9e1886e1; size =     92160; name = ARC\ST7_1_1.ARC
+    file[]: crc = 3cf6aa1c; size =    139264; name = ARC\ST8_1_1.ARC
+    file[]: crc = 0ee4a0b3; size =    174080; name = ARC\STA_0_1.ARC
+    file[]: crc = cb11381a; size =    206848; name = ARC\STC_1_1.ARC
+    file[]: crc = 1939914b; size =    276480; name = ARC\STD_1_1.ARC
+    file[]: crc = 417b5eb1; size =    331776; name = ARC\STD_1_2.ARC
+    file[]: crc = 89fffc18; size =    280576; name = ARC\STD_1_3.ARC
+    file[]: crc = b7429cf5; size =    321536; name = ARC\STD_1_4.ARC
+    file[]: crc = 497342bb; size =    315392; name = ARC\STD_1_5.ARC
+    file[]: crc = 70fe15b6; size =    325632; name = ARC\STD_1_6.ARC
+    file[]: crc = 26bcb94d; size =    272384; name = ARC\STD_1_7.ARC
+    file[]: crc = 84f7183d; size =    315392; name = ARC\STD_1_8.ARC
+    file[]: crc = 3327e980; size =    550996; name = BGM\BGM29.SE
+    file[]: crc = c80a2941; size =     42234; name = BGM\VOICE00.SE
+    file[]: crc = 52b38ed9; size =     76554; name = BGM\VOICE01.SE
+    file[]: crc = 255e8b63; size =     79550; name = BGM\VOICE02.SE
+    file[]: crc = 2311d63b; size =     86828; name = BGM\VOICE03.SE
+    file[]: crc = 314b7735; size =     78142; name = BGM\VOICE04.SE
+    file[]: crc = c8ff9a2e; size =    117696; name = BGM\VOICE05.SE
+    file[]: crc = 3fe3ca8f; size =    112126; name = BGM\VOICE06.SE
+    file[]: crc = 215df62e; size =    106084; name = BGM\VOICE07.SE
+    file[]: crc = ca9cc268; size =    111742; name = BGM\VOICE10.SE
+    file[]: crc = fe0d88e8; size =     93796; name = BGM\VOICE11.SE
+    file[]: crc = ab7ae152; size =    114522; name = BGM\VOICE12.SE
+    file[]: crc = 2825b37a; size =    115814; name = BGM\VOICE13.SE
+    file[]: crc = c541a24a; size =    129660; name = BGM\VOICE14.SE
+    file[]: crc = a8059eba; size =    123252; name = BGM\VOICE15.SE
+    file[]: crc = 3bc7c880; size =    115432; name = BGM\VOICE16.SE
+    file[]: crc = b36f37e1; size =    116196; name = BGM\VOICE17.SE
+    file[]: crc = 75deadb0; size =    128896; name = BGM\VOICE20.SE
+    file[]: crc = cd404a80; size =    130836; name = BGM\VOICE21.SE
+    file[]: crc = 57bfb401; size =    138038; name = BGM\VOICE22.SE
+    file[]: crc = 117f0578; size =    140890; name = BGM\VOICE23.SE
+    file[]: crc = d0f929c7; size =    132100; name = BGM\VOICE24.SE
+    file[]: crc = 1c528886; size =    147210; name = BGM\VOICE25.SE
+    file[]: crc = 5bb185dc; size =    136658; name = BGM\VOICE26.SE
+    file[]: crc = 0b144d8c; size =    174168; name = BGM\VOICE27.SE
+    file[]: crc = 44a03bdc; size =    133982; name = BGM\VOICE30.SE
+    file[]: crc = 662421da; size =    143302; name = BGM\VOICE31.SE
+    file[]: crc = c16fde08; size =    158970; name = BGM\VOICE32.SE
+    file[]: crc = d5dd15be; size =    143550; name = BGM\VOICE33.SE
+    file[]: crc = e339df1e; size =    147388; name = BGM\VOICE34.SE
+    file[]: crc = fac3608b; size =    147006; name = BGM\VOICE35.SE
+    file[]: crc = 4c0ed2eb; size =    144212; name = BGM\VOICE36.SE
+    file[]: crc = 0b144d8c; size =    174168; name = BGM\VOICE37.SE
+    file[]: crc = 21c19956; size =    148504; name = BGM\VOICE40.SE
+    file[]: crc = 71cf5e65; size =    151738; name = BGM\VOICE41.SE
+    file[]: crc = da33174a; size =    157838; name = BGM\VOICE42.SE
+    file[]: crc = 6e0c3e46; size =    173256; name = BGM\VOICE43.SE
+    file[]: crc = 1bdd23ea; size =    163174; name = BGM\VOICE44.SE
+    file[]: crc = 3413006e; size =    165290; name = BGM\VOICE45.SE
+    file[]: crc = e622a045; size =    185428; name = BGM\VOICE46.SE
+    file[]: crc = aee970a1; size =    164262; name = BGM\VOICE47.SE
+    file[]: crc = db31b300; size =    640694; name = BGM\VOICE50.SE
+    file[]: crc = 46d6b63e; size =    640694; name = BGM\VOICE51.SE
+    file[]: crc = 54f670e8; size =    640694; name = BGM\VOICE52.SE
+    file[]: crc = 8ed34f27; size =    640694; name = BGM\VOICE53.SE
+    file[]: crc = d1804044; size =    640694; name = BGM\VOICE54.SE
+    file[]: crc = 495ed0c4; size =    640694; name = BGM\VOICE55.SE
+    file[]: crc = 309bc73d; size =    640694; name = BGM\VOICE56.SE
+    file[]: crc = fd6f169f; size =    640694; name = BGM\VOICE57.SE
+    file[]: crc = fc1577b2; size =    169918; name = SE\SE01_E11.SEZ
+    file[]: crc = 43e5c83e; size =    436737; name = SE\SE02_E11.SEZ
+    file[]: crc = 1910ebe5; size =    141639; name = SE\SE03_E11.SEZ
+    file[]: crc = f387ec35; size =    303902; name = SE\SE05_E11.SEZ
+    file[]: crc = 27e5b7a1; size =    313065; name = SE\SE06_E11.SEZ
+    file[]: crc = aaedec74; size =    261741; name = SE\SE07_E11.SEZ
+    file[]: crc = 9f082348; size =    312057; name = SE\SE08_E11.SEZ
+    file[]: crc = 6cd5662c; size =    451087; name = SE\SE0A_E11.SEZ
+    file[]: crc = 742ba3f8; size =    577456; name = SE\SE0B_E01.SEZ
+    file[]: crc = f1888242; size =    729301; name = SE\SE0C_E11.SEZ
+    file[]: crc = 0edfde43; size =    487653; name = SE\SE0C_E12.SEZ
+    file[]: crc = 4468cb1c; size =    885377; name = SE\SE_COM.SEZ
+    file[]: crc = 19413041; size =    425916; name = SE\SE_WEP00.SEZ
+    file[]: crc = dc3c7f72; size =    476490; name = SE\SE_WEP01.SEZ
+    file[]: crc = 3797b95f; size =    207637; name = SE\VO_PL00.SEZ
+    file[]: crc = 55cd0d65; size =    208956; name = SE\VO_PL01.SEZ
+    file[]: crc = 80915b34; size =   1637852; name = STR\CAPCOM.AVI
+    file[]: crc = df634512; size =  19920332; name = STR\WOP.AVI
+    file[]: crc = 7de174be; size =  10613868; name = STR\WX1.AVI
+    file[]: crc = ad0d52e3; size =  16378172; name = STR\WX2.AVI
+    file[]: crc = 72dc3d6d; size =  14846140; name = STR\WX3.AVI
+    file[]: crc = b9c7ed85; size =  16748508; name = STR\WX4.AVI
+    file[]: crc = 1290819b; size =  11491804; name = STR\WZ1.AVI
+    file[]: crc = 71c73c9e; size =  14833052; name = STR\WZ2.AVI
+    file[]: crc = 2d2c43d6; size =  12508012; name = STR\WZ3.AVI
+    file[]: crc = ce7f13e9; size =  44584028; name = STR\WZ4.AVI
+    file[]: crc = 3a8c122d; size =  12105452; name = STR\WZ5.AVI
+	
+	EXENAME = rmx4
+	CDLABEL = RockmanX4
+	locale = ja-JP
+	
+end
+
+end

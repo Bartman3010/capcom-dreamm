@@ -1,0 +1,274 @@
+//
+// Mega Man X5 / Rockman X5
+//
+desc[cap-mmx5]:
+
+name = Mega Man X5 / Rockman X5
+icon = cap-mmx5.png
+machine = pc
+rootpath = C:\Megaman X5
+launch = "$(rootpath)\$(EXENAME).exe"
+osenv = windows 95
+winres = 640x480x8
+
+
+
+//
+// filesystem
+//
+mount[]: vpath = C:\; srcpath = $(ifsdeltapath); writable = true
+mount[]: vpath = $(rootpath); srcpath = $(ifsinstallpath)
+mount[]: vpath = D:\; srcpath = $(ifsinstallpath)\CD; optional = true
+
+//
+// dynamic files
+//
+dynamicfile[]: path = D:\$(CDLABEL); attributes = 8; contents = $(NULL)
+
+fragment[install-base]:
+	rootpath = D:\
+	launch = D:\Setup.exe
+
+
+end
+
+game[pc-cd-en]:
+	name = English CD
+	anchorfile = x5op.dat
+	anchordepth = 1
+    file[]: crc = d77b9f55; size =   1097728; name = x5.exe
+    file[]: crc = 1aa87843; size =    248894; name = bgm\bgm00.dat
+    file[]: crc = d496ca27; size =    229310; name = bgm\bgm01.dat
+    file[]: crc = ad47dcf8; size =  15151166; name = bgm\bgm02.dat
+    file[]: crc = 97323ee6; size =  13615550; name = bgm\bgm03.dat
+    file[]: crc = d96bd09a; size =  14949566; name = bgm\bgm04.dat
+    file[]: crc = 0035c163; size =  14292926; name = bgm\bgm05.dat
+    file[]: crc = 79cef7f7; size =  15514046; name = bgm\bgm06.dat
+    file[]: crc = 7215c710; size =  15941438; name = bgm\bgm07.dat
+    file[]: crc = 51c841f2; size =  16028990; name = bgm\bgm08.dat
+    file[]: crc = a9fcc826; size =  14291774; name = bgm\bgm09.dat
+    file[]: crc = f0dea64c; size =  14009534; name = bgm\bgm10.dat
+    file[]: crc = ebbfd454; size =  14135102; name = bgm\bgm11.dat
+    file[]: crc = 9756c68a; size =  15421886; name = bgm\bgm12.dat
+    file[]: crc = 096d398c; size =  15873470; name = bgm\bgm13.dat
+    file[]: crc = 59b3fbfb; size =  14135102; name = bgm\bgm14.dat
+    file[]: crc = e326f397; size =  14318270; name = bgm\bgm15.dat
+    file[]: crc = 235b96d4; size =  15196094; name = bgm\bgm16.dat
+    file[]: crc = d6951bff; size =  14238782; name = bgm\bgm17.dat
+    file[]: crc = e4c55bd6; size =  14799806; name = bgm\bgm18.dat
+    file[]: crc = c07e7d21; size =  13680062; name = bgm\bgm19.dat
+    file[]: crc = 7eb29236; size =   2351294; name = bgm\bgm20.dat
+    file[]: crc = be1911c1; size =  13562558; name = bgm\bgm21.dat
+    file[]: crc = cd1f846d; size =  13602878; name = bgm\bgm22.dat
+    file[]: crc = a1940fec; size =  14178878; name = bgm\bgm23.dat
+    file[]: crc = b65ee100; size =    347966; name = bgm\bgm24.dat
+    file[]: crc = 58b6c3c5; size =  13451966; name = bgm\bgm25.dat
+    file[]: crc = d59ded82; size =  13456574; name = bgm\bgm26.dat
+    file[]: crc = 2c3cb5a0; size =  14355134; name = bgm\bgm27.dat
+    file[]: crc = 585e31bb; size =  10825406; name = bgm\bgm28.dat
+    file[]: crc = 3acda4e2; size =  13683518; name = bgm\bgm29.dat
+    file[]: crc = 31d0de55; size =  13936958; name = bgm\bgm30.dat
+    file[]: crc = f1df35ae; size =  10826558; name = bgm\bgm31.dat
+    file[]: crc = 7b484d3e; size =     21720; name = dat\CAPCOM.DAT
+    file[]: crc = 0bddb4bd; size =     16400; name = dat\COL00_0X.DAT
+    file[]: crc = d74f20a6; size =     16400; name = dat\COL00_0Z.DAT
+    file[]: crc = ad1f011a; size =     16400; name = dat\COL01_0X.DAT
+    file[]: crc = 718d9501; size =     16400; name = dat\COL01_0Z.DAT
+    file[]: crc = 0f530088; size =     16400; name = dat\COL02_0X.DAT
+    file[]: crc = d3c19493; size =     16400; name = dat\COL02_0Z.DAT
+    file[]: crc = 8706ca90; size =     16400; name = dat\COL02_1X.DAT
+    file[]: crc = 5b945e8b; size =     16400; name = dat\COL02_1Z.DAT
+    file[]: crc = 7ed3c9e4; size =     16400; name = dat\COL03_0X.DAT
+    file[]: crc = a2415dff; size =     16400; name = dat\COL03_0Z.DAT
+    file[]: crc = d5110c41; size =     16400; name = dat\COL04_0X.DAT
+    file[]: crc = 0983985a; size =     16400; name = dat\COL04_0Z.DAT
+    file[]: crc = e8438827; size =     16400; name = dat\COL04_1X.DAT
+    file[]: crc = 34d11c3c; size =     16400; name = dat\COL04_1Z.DAT
+    file[]: crc = 671f1fb8; size =     16400; name = dat\COL05_0X.DAT
+    file[]: crc = bb8d8ba3; size =     16400; name = dat\COL05_0Z.DAT
+    file[]: crc = 37209799; size =     16400; name = dat\COL06_0X.DAT
+    file[]: crc = ebb20382; size =     16400; name = dat\COL06_0Z.DAT
+    file[]: crc = 4c549446; size =     16400; name = dat\COL06_1X.DAT
+    file[]: crc = 90c6005d; size =     16400; name = dat\COL06_1Z.DAT
+    file[]: crc = a3c8cb70; size =     16400; name = dat\COL07_0X.DAT
+    file[]: crc = 7f5a5f6b; size =     16400; name = dat\COL07_0Z.DAT
+    file[]: crc = 7c4e1068; size =     16400; name = dat\COL08_0X.DAT
+    file[]: crc = a0dc8473; size =     16400; name = dat\COL08_0Z.DAT
+    file[]: crc = 1ac0215b; size =     16400; name = dat\COL09_0X.DAT
+    file[]: crc = c652b540; size =     16400; name = dat\COL09_0Z.DAT
+    file[]: crc = 5610182a; size =     16400; name = dat\COL09_BX.DAT
+    file[]: crc = 8a828c31; size =     16400; name = dat\COL09_BZ.DAT
+    file[]: crc = a624c98c; size =     16400; name = dat\COL0A_0X.DAT
+    file[]: crc = 7ab65d97; size =     16400; name = dat\COL0A_0Z.DAT
+    file[]: crc = 4a235df2; size =     16400; name = dat\COL0A_BX.DAT
+    file[]: crc = 96b1c9e9; size =     16400; name = dat\COL0A_BZ.DAT
+    file[]: crc = 6d6a3a2c; size =     16400; name = dat\COL0C_0X.DAT
+    file[]: crc = b1f8ae37; size =     16400; name = dat\COL0C_0Z.DAT
+    file[]: crc = 825350e1; size =     16400; name = dat\COL0D_00.DAT
+    file[]: crc = 32e852c6; size =     16400; name = dat\COL0E_00.DAT
+    file[]: crc = b5180f8b; size =     16400; name = dat\COL0E_01.DAT
+    file[]: crc = 454d9002; size =     16400; name = dat\COL0F_00.DAT
+    file[]: crc = de5cd0f0; size =     16400; name = dat\COL0F_01.DAT
+    file[]: crc = 6425867a; size =     16400; name = dat\COL0G_0X.DAT
+    file[]: crc = b8b71261; size =     16400; name = dat\COL0G_0Z.DAT
+    file[]: crc = 61bafd18; size =     16400; name = dat\COL0H_0X.DAT
+    file[]: crc = bd286903; size =     16400; name = dat\COL0H_0Z.DAT
+    file[]: crc = 1d70269e; size =     16400; name = dat\COL0I_0X.DAT
+    file[]: crc = c1e2b285; size =     16400; name = dat\COL0I_0Z.DAT
+    file[]: crc = 33b19e0d; size =     10256; name = dat\COL0M_0X.DAT
+    file[]: crc = baad00e0; size =     10256; name = dat\COL0M_0Z.DAT
+    file[]: crc = b3558a06; size =     16400; name = dat\COLB_1.DAT
+    file[]: crc = dfbe4786; size =     16400; name = dat\COLB_10.DAT
+    file[]: crc = 74e42611; size =     16400; name = dat\COLB_12.DAT
+    file[]: crc = cd35af4e; size =     16400; name = dat\COLB_13.DAT
+    file[]: crc = 1a4c65d0; size =     16400; name = dat\COLB_14.DAT
+    file[]: crc = 390b6547; size =     16400; name = dat\COLB_15.DAT
+    file[]: crc = aa8c4393; size =     16400; name = dat\COLB_16.DAT
+    file[]: crc = 4016b931; size =     16400; name = dat\COLB_17.DAT
+    file[]: crc = b2cd2b60; size =     16400; name = dat\COLB_18.DAT
+    file[]: crc = cae329c9; size =     16400; name = dat\COLB_2.DAT
+    file[]: crc = 36d75978; size =     16400; name = dat\COLB_3.DAT
+    file[]: crc = 36391f49; size =     16400; name = dat\COLB_4.DAT
+    file[]: crc = ea18bdf6; size =     16400; name = dat\COLB_5.DAT
+    file[]: crc = 8d32e2e0; size =     16400; name = dat\COLB_6.DAT
+    file[]: crc = 89448b57; size =     16400; name = dat\COLB_78.DAT
+    file[]: crc = 534ada30; size =     16400; name = dat\COLB_9.DAT
+    file[]: crc = b6a9c030; size =     16400; name = dat\COLB_X1.DAT
+    file[]: crc = 1ed87177; size =     16400; name = dat\COLB_X2.DAT
+    file[]: crc = bee3c7d1; size =     16400; name = dat\COLB_Z.DAT
+    file[]: crc = c9462c62; size =     16400; name = dat\COLD_1_1.DAT
+    file[]: crc = ee2958d4; size =     16400; name = dat\COLD_1_2.DAT
+    file[]: crc = 2c15e40c; size =     16400; name = dat\COLD_1_3.DAT
+    file[]: crc = 0dcaacfb; size =     16400; name = dat\COLD_1_4.DAT
+    file[]: crc = 5152b9e6; size =     16400; name = dat\COLD_1_5.DAT
+    file[]: crc = 69c368c3; size =     16400; name = dat\COLD_1_6.DAT
+    file[]: crc = fcc14b52; size =     16400; name = dat\COLD_1_7.DAT
+    file[]: crc = acaeed66; size =     16400; name = dat\COLD_1_8.DAT
+    file[]: crc = cba1c29e; size =     16400; name = dat\COLD_1_9.DAT
+    file[]: crc = f2525ece; size =   1785322; name = dat\ED_X1.DAT
+    file[]: crc = b577c414; size =   1401698; name = dat\ED_X2.DAT
+    file[]: crc = be0bacab; size =   1795334; name = dat\ED_Z.DAT
+    file[]: crc = 9846e13f; size =      4640; name = dat\FONT8X8.DAT
+    file[]: crc = 30ee52a2; size =    163904; name = dat\LOAD.DAT
+    file[]: crc = 008eaf9f; size =    246152; name = dat\ONPARE1.DAT
+    file[]: crc = 3ff2e1b0; size =    268596; name = dat\ONPARE2.DAT
+    file[]: crc = e8e9531a; size =    136680; name = dat\ONPARE3.DAT
+    file[]: crc = fae9c7ef; size =    382392; name = dat\ONPARE4.DAT
+    file[]: crc = e5810586; size =    142200; name = dat\ONPARE5.DAT
+    file[]: crc = 24ee608d; size =    174284; name = dat\ONPARE6.DAT
+    file[]: crc = f822cc60; size =    239136; name = dat\ONPARE7.DAT
+    file[]: crc = 64ef85ce; size =    244780; name = dat\ONPARE8.DAT
+    file[]: crc = b1b1614d; size =    210796; name = dat\ONPAREA.DAT
+    file[]: crc = d5dbf970; size =   1980336; name = dat\PL00.DAT
+    file[]: crc = 14f3d4e2; size =   1980344; name = dat\PL00_4.DAT
+    file[]: crc = 6b5eeda0; size =   1836314; name = dat\PL01.DAT
+    file[]: crc = 9719f0ae; size =   1971336; name = dat\PL02.DAT
+    file[]: crc = d7426e66; size =   1948508; name = dat\PL03.DAT
+    file[]: crc = a1940db2; size =   1838548; name = dat\PL04.DAT
+    file[]: crc = 59ac2810; size =      8192; name = dat\PLDEMO00.BIN
+    file[]: crc = 4ae45180; size =      8192; name = dat\PLDEMO01.BIN
+    file[]: crc = 8210e0fd; size =      8192; name = dat\PLDEMO02.BIN
+    file[]: crc = f8973e48; size =      8192; name = dat\PLDEMO03.BIN
+    file[]: crc = 149c7ee6; size =    884528; name = dat\ST00_00.DAT
+    file[]: crc = b66974e9; size =    816656; name = dat\ST01_00.DAT
+    file[]: crc = 26e74746; size =    472688; name = dat\ST02_00.DAT
+    file[]: crc = d3fb4e31; size =    839656; name = dat\ST02_01.DAT
+    file[]: crc = 1306d39d; size =    965032; name = dat\ST03_00.DAT
+    file[]: crc = 8eeada07; size =    867232; name = dat\ST04_00.DAT
+    file[]: crc = e0cbb5a0; size =   1030404; name = dat\ST04_01.DAT
+    file[]: crc = 4abc49ca; size =    980020; name = dat\ST05_00.DAT
+    file[]: crc = b3f38d6f; size =    500968; name = dat\ST06_00.DAT
+    file[]: crc = e1bd3e66; size =    895436; name = dat\ST06_01.DAT
+    file[]: crc = fb2358a7; size =    952368; name = dat\ST07_00.DAT
+    file[]: crc = eadc49c0; size =    907852; name = dat\ST08_00.DAT
+    file[]: crc = 6ab2a973; size =    710748; name = dat\ST09_00.DAT
+    file[]: crc = 46533da3; size =    710748; name = dat\ST09_00B.DAT
+    file[]: crc = 11b2c58b; size =    309232; name = dat\ST0_1_1.DAT
+    file[]: crc = bd98d8d6; size =    710748; name = dat\ST0A_00.DAT
+    file[]: crc = e39ec114; size =    710748; name = dat\ST0A_00B.DAT
+    file[]: crc = 6b9e89eb; size =    950188; name = dat\ST0C_00.DAT
+    file[]: crc = 6c458739; size =   1377924; name = dat\ST0D_00.DAT
+    file[]: crc = 6a65e129; size =   1198054; name = dat\ST0E_00.DAT
+    file[]: crc = f7386576; size =    440384; name = dat\ST0E_01.DAT
+    file[]: crc = 425b8b9f; size =   1484378; name = dat\ST0F_01.DAT
+    file[]: crc = 2ce63ae7; size =   1272278; name = dat\ST0F_0X.DAT
+    file[]: crc = 2ce63ae7; size =   1272278; name = dat\ST0F_0Z.DAT
+    file[]: crc = 37d2936b; size =    763160; name = dat\ST0G_00.DAT
+    file[]: crc = 2bf60b9f; size =    530756; name = dat\ST0H_00.DAT
+    file[]: crc = a087500c; size =    446580; name = dat\ST0I_00.DAT
+    file[]: crc = 9fb5bc63; size =    438624; name = dat\ST0M_00.DAT
+    file[]: crc = 7322a37a; size =    234476; name = dat\ST1_1_1.DAT
+    file[]: crc = bb6ff208; size =    256068; name = dat\ST2_1_1.DAT
+    file[]: crc = 1077503d; size =    131636; name = dat\ST3_1_1.DAT
+    file[]: crc = 6ad2b01e; size =    375752; name = dat\ST4_1_1.DAT
+    file[]: crc = ff5d5dd4; size =    136196; name = dat\ST5_1_1.DAT
+    file[]: crc = cb5fa1d5; size =    167512; name = dat\ST6_1_1.DAT
+    file[]: crc = e8755ba3; size =    230176; name = dat\ST7_1_1.DAT
+    file[]: crc = d178ac98; size =    237280; name = dat\ST8_1_1.DAT
+    file[]: crc = 74c798be; size =   1397110; name = dat\STB_1.DAT
+    file[]: crc = cb96e7c7; size =   1393966; name = dat\STB_10.DAT
+    file[]: crc = 8d2dce73; size =   1588790; name = dat\STB_12.DAT
+    file[]: crc = ed108bf9; size =   1635254; name = dat\STB_13.DAT
+    file[]: crc = 99f717a8; size =   1395506; name = dat\STB_14.DAT
+    file[]: crc = 5a128a35; size =   1551534; name = dat\STB_15.DAT
+    file[]: crc = a6340e5b; size =   1400482; name = dat\STB_16.DAT
+    file[]: crc = 77bed195; size =   1400974; name = dat\STB_17.DAT
+    file[]: crc = 3351b7de; size =   1819538; name = dat\STB_18.DAT
+    file[]: crc = 3e72b57e; size =   1530578; name = dat\STB_2.DAT
+    file[]: crc = 1592bd9e; size =   1395630; name = dat\STB_3.DAT
+    file[]: crc = 96a8d9d7; size =   1393966; name = dat\STB_4.DAT
+    file[]: crc = 495922b3; size =   1400670; name = dat\STB_5.DAT
+    file[]: crc = 2e89a51a; size =   1401622; name = dat\STB_6.DAT
+    file[]: crc = 2f3e2d93; size =   1489694; name = dat\STB_78.DAT
+    file[]: crc = b5fb6407; size =   1395630; name = dat\STB_9.DAT
+    file[]: crc = 2235999e; size =    428552; name = dat\STC_1_1.DAT
+    file[]: crc = 0d1cb2d9; size =    404740; name = dat\STC_2_2.DAT
+    file[]: crc = 7d921332; size =    732036; name = dat\STD_1_1.DAT
+    file[]: crc = cd30d088; size =    732036; name = dat\STD_1_2.DAT
+    file[]: crc = 1989e117; size =    732036; name = dat\STD_1_3.DAT
+    file[]: crc = 6bdd3743; size =    732036; name = dat\STD_1_4.DAT
+    file[]: crc = 3ed844a4; size =    732036; name = dat\STD_1_5.DAT
+    file[]: crc = 90e36e08; size =    732036; name = dat\STD_1_6.DAT
+    file[]: crc = f82760dd; size =    732036; name = dat\STD_1_7.DAT
+    file[]: crc = 3720fa53; size =    732036; name = dat\STD_1_8.DAT
+    file[]: crc = f4b83cf3; size =    732036; name = dat\STD_1_9.DAT
+    file[]: crc = fa3e6ea1; size =    304808; name = dat\STG_1_1.DAT
+    file[]: crc = e6851578; size =    282260; name = dat\STH_1_1.DAT
+    file[]: crc = a9de3e1e; size =    513268; name = dat\STI_1_1.DAT
+    file[]: crc = a5909f2d; size =    491480; name = dat\STI_2_2.DAT
+    file[]: crc = e5699fe8; size =    246020; name = dat\STM_1_1.DAT
+    file[]: crc = 917f89f2; size =     34272; name = dat\WARNING.DAT
+    file[]: crc = 2f4f02a0; size =   2154500; name = mov\caplogo.dat
+    file[]: crc = 8eef7463; size =  28889092; name = mov\x5op.dat	
+	
+	//CD-ROM
+    file[]: crc = 8eef7463; size =  28889092; name = CD\mov\x5op.dat
+	EXENAME = x5
+	CDLABEL = MegamanX5_eng
+	
+end
+
+//
+// Installer for English CD
+//
+installer[pc-cd-en-install]:
+	name = English CD Installer
+	imports = install-base
+	installid = pc-cd-en
+	anchorfile = start.exe
+	EXENAME = X5
+	CDLABEL = MegamanX5_eng
+    file[]: crc = 1c073d9f; size =        43; name = CD\autorun.inf
+    file[]: crc = c38735c3; size =    431566; name = CD\data1.cab
+    file[]: crc = 1749c52b; size =     31779; name = CD\data1.hdr
+    file[]: crc = a2db83ce; size =    510522; name = CD\data2.cab
+    file[]: crc = 2050f89f; size =    340866; name = CD\ikernel.ex_
+    file[]: crc = 64eee7bd; size =       417; name = CD\layout.bin
+    file[]: crc = 7013c394; size =     54784; name = CD\Setup.exe
+    file[]: crc = 5f93bc15; size =        82; name = CD\Setup.ini
+    file[]: crc = 918835e2; size =    137993; name = CD\Setup.inx
+    file[]: crc = dec37293; size =    652048; name = CD\start.exe
+	
+end
+
+end

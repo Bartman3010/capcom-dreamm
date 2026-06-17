@@ -1,0 +1,166 @@
+//
+// X-Men: Children of the Atom
+// Original file by eientei, CookieMonster123
+desc[cap-xcota]:
+
+name = X-Men: Children of the Atom
+icon = cap-xcota.png
+machine = pc
+rootpath = C:\ACCLAIM\XMEN
+launch = $(rootpath)\$(EXENAME).EXE
+osenv = dos
+fixdivover = true
+mips = $(MIPS_P100)
+ramkb = 16384
+audiohw = sb16
+videohw = svga
+EXENAME = XMENPC
+CDLABEL = XMEN_COTA_PC
+
+//
+// filesystem
+//
+mount[]: vpath = D:\; srcpath = $(ifsinstallpath)/CD; condition = is_game()
+mount[]: vpath = C:\; srcpath = $(ifsdeltapath); writable = true
+mount[]: vpath = $(rootpath); srcpath = $(ifsinstallpath)
+
+//
+// dynamic files
+//
+dynamicfile[]: path = D:\$(CDLABEL); attributes = 8; contents = $(NULL)
+
+dynamicfile[]:
+    path = $(rootpath)\DIG.INI
+    contents = [[[$(CRLF)
+        DEVICE      Creative Labs Sound Blaster 16 or AWE32
+        DRIVER      SB16.DIG
+        IO_ADDR     220h
+        IRQ         -1
+        DMA_8_BIT   -1
+        DMA_16_BIT  -1
+    ]]]
+end
+
+//
+// EXE Start
+//
+config[mode]:
+	title = Mode Select
+		option[game]: name = Game Start; EXENAME = XMENPC; priority = 1
+		option[sound]: name = Sound Config; EXENAME = SETSOUND
+		option[uv]: name = UV Config; EXENAME = UVCONFIG
+		
+end
+//
+// English CD EU
+//
+game[pc-en-cd]:
+    name = English CD EU
+    anchorfile = XMENPC.EXE
+    anchordepth = 3
+    file[]: crc = c54e9052; size =    313062; name = ATTRACT.DAT
+    file[]: crc = f4e8e5ff; size =     11372; name = AUDIODRV.DIG
+    file[]: crc = 45e96a18; size =    355794; name = AVALON.DAT
+    file[]: crc = e9cefaa7; size =     30118; name = COL_END.DAT
+    file[]: crc = c8f8b0da; size =   1253800; name = COLOSSUS.DAT
+    file[]: crc = b0360c50; size =     49678; name = CONTINUE.DAT
+    file[]: crc = 5f978396; size =     15036; name = CYC_END.DAT
+    file[]: crc = 5e5f88bd; size =   1027038; name = CYCLOPS.DAT
+    file[]: crc = 23636003; size =    460986; name = DANGER_R.DAT
+    file[]: crc = 8fda68dd; size =    271556; name = GENOSHA.DAT
+    file[]: crc = f23bca95; size =    103376; name = ICE_END.DAT
+    file[]: crc = 90448339; size =    274904; name = ICE_ON_T.DAT
+    file[]: crc = 41e23861; size =   1000350; name = ICEMAN.DAT
+    file[]: crc = b9199db2; size =      2585; name = IWAV.DIG
+    file[]: crc = 230129e0; size =      3219; name = JAMMER.DIG
+    file[]: crc = f76c496e; size =   1343992; name = JUGGERNA.DAT
+    file[]: crc = 8c98e968; size =     96388; name = MAG_END.DAT
+    file[]: crc = 7afae8f9; size =    265722; name = MAGINTRO.DAT
+    file[]: crc = 957c7456; size =   1431338; name = MAGNETO.DAT
+    file[]: crc = 57a83d5a; size =    103792; name = MAGWIN.DAT
+    file[]: crc = 370c75b8; size =    774300; name = MISC.DAT
+    file[]: crc = df6e78b5; size =    464626; name = MOJO_WOR.DAT
+    file[]: crc = f2f93dec; size =    413692; name = MOON_NIG.DAT
+    file[]: crc = 9df0b28c; size =     20408; name = MSSDRVR.LST
+    file[]: crc = 8f1a5f87; size =    513948; name = MUTANT_H.DAT
+    file[]: crc = 7630b20c; size =      1877; name = NVDIG.DIG
+    file[]: crc = 96c82210; size =   1354896; name = OMEGARED.DAT
+    file[]: crc = 656f03b5; size =    191936; name = ON_THE_B.DAT
+    file[]: crc = acd95168; size =      2214; name = PROAUDIO.DIG
+    file[]: crc = 20f26492; size =     38590; name = PSY_END.DAT
+    file[]: crc = 51e7f00d; size =    779982; name = PSYLOCKE.DAT
+    file[]: crc = 0963cd48; size =      2936; name = RAP10.DIG
+    file[]: crc = ba525991; size =     34764; name = RED_END.DAT
+    file[]: crc = e601ad59; size =    244958; name = SAMURAI_.DAT
+    file[]: crc = 954d63d9; size =     17512; name = SATTRACT.DAT
+    file[]: crc = 74af9d60; size =    797112; name = SAVAGE_L.DAT
+    file[]: crc = af76c7ab; size =      2923; name = SB16.DIG
+    file[]: crc = 1ac0a97b; size =      3212; name = SBLASTER.DIG
+    file[]: crc = 56e29608; size =      2871; name = SBPRO.DIG
+    file[]: crc = 6dba4802; size =    160603; name = SCOLOSSU.DAT
+    file[]: crc = 89483a6c; size =    119681; name = SCYCLOPS.DAT
+    file[]: crc = 0d9f84e7; size =    180136; name = SELCOLOS.DAT
+    file[]: crc = c3fb5332; size =    191676; name = SELCYCLO.DAT
+    file[]: crc = e7de6feb; size =    133612; name = SELECT.DAT
+    file[]: crc = ad7f3029; size =    225436; name = SELICEMA.DAT
+    file[]: crc = 3e166e3a; size =    277626; name = SELJUGGE.DAT
+    file[]: crc = 06c01be8; size =    377724; name = SELMAGNE.DAT
+    file[]: crc = 116afc2e; size =    134176; name = SELPSYLO.DAT
+    file[]: crc = d31ca007; size =    162250; name = SELRED.DAT
+    file[]: crc = 12f34d0c; size =    795902; name = SELSENTI.DAT
+    file[]: crc = 98bc1a01; size =    193380; name = SELSILVE.DAT
+    file[]: crc = bc2391fc; size =    166082; name = SELSPIRA.DAT
+    file[]: crc = 0f8d97d9; size =    269092; name = SELSTORM.DAT
+    file[]: crc = da771bca; size =    113620; name = SELWOLVE.DAT
+    file[]: crc = 9d17ef8e; size =     66580; name = SELYABOU.DAT
+    file[]: crc = 7101950d; size =     38528; name = SEN_CT1.DAT
+    file[]: crc = 7317048d; size =    125260; name = SEN_CT2.DAT
+    file[]: crc = e150dc18; size =     80302; name = SEN_CT3.DAT
+    file[]: crc = 14b89993; size =     75218; name = SEN_CT4.DAT
+    file[]: crc = b8c64635; size =     69126; name = SEN_CT5.DAT
+    file[]: crc = f9f19306; size =     38514; name = SEN_CT6.DAT
+    file[]: crc = de8df928; size =     77366; name = SEN_CT7.DAT
+    file[]: crc = 2d09079e; size =     86528; name = SEN_CT8.DAT
+    file[]: crc = 49c8e6eb; size =     66114; name = SEN_CTA.DAT
+    file[]: crc = 6eeb1036; size =     17130; name = SEN_CTB.DAT
+    file[]: crc = 2138d59f; size =     27342; name = SEN_CTC.DAT
+    file[]: crc = 2ee13eef; size =     31690; name = SEN_END.DAT
+    file[]: crc = 5e6d5ff9; size =         8; name = SEN_WIN1.DAT
+    file[]: crc = 5ca4a9c2; size =   3801040; name = SENTINEL.DAT
+    file[]: crc = 9afcbbc9; size =    120433; name = SETSOUND.EXE
+    file[]: crc = b7ff620d; size =     89059; name = SICEMAN.DAT
+    file[]: crc = 263ea544; size =     10268; name = SIL_END.DAT
+    file[]: crc = 0a6cb825; size =   1162290; name = SILVER.DAT
+    file[]: crc = d6675589; size =     90436; name = SJUGGERN.DAT
+    file[]: crc = c3d4969f; size =    190753; name = SMAGNETO.DAT
+    file[]: crc = d3a9a365; size =    533822; name = SMISC.DAT
+    file[]: crc = 708a96a2; size =      4171; name = SNDSCAPE.DIG
+    file[]: crc = d92696c9; size =      3419; name = SNDSYS.DIG
+    file[]: crc = 7ff26a97; size =    110530; name = SOMEGARE.DAT
+    file[]: crc = 65a1643b; size =    270252; name = SPACE_PO.DAT
+    file[]: crc = 4721e6c2; size =   1537390; name = SPIRAL.DAT
+    file[]: crc = ee473c6f; size =     15666; name = SPR_END.DAT
+    file[]: crc = 102a3278; size =    124595; name = SPSYLOCK.DAT
+    file[]: crc = 0b31993d; size =    128467; name = SSELECT.DAT
+    file[]: crc = 26e8033b; size =    232791; name = SSENTINE.DAT
+    file[]: crc = ef89bacd; size =    164090; name = SSILVER.DAT
+    file[]: crc = bf035e76; size =     77974; name = SSPIRAL.DAT
+    file[]: crc = 02567ff5; size =    186506; name = SSTORM.DAT
+    file[]: crc = 1077cb1c; size =     24324; name = STO_END.DAT
+    file[]: crc = b6f4a641; size =    987610; name = STORM.DAT
+    file[]: crc = ef796f95; size =     71012; name = SUNUSED.DAT
+    file[]: crc = 810a2f8b; size =    117254; name = SWOLVERI.DAT
+    file[]: crc = 6da16e55; size =    404562; name = THE_DEEP.DAT
+    file[]: crc = 430d67f5; size =      9478; name = ULTRA.DIG
+    file[]: crc = e2293dae; size =    309382; name = UVCONFIG.EXE
+    file[]: crc = edd98ae6; size =     47240; name = WOL_END.DAT
+    file[]: crc = d48006be; size =   1027014; name = WOLVERIN.DAT
+    file[]: crc = 4268573c; size =        10; name = XMEN.BAT
+    file[]: crc = bc4d07b7; size =       967; name = XMEN16.PIF
+    file[]: crc = fa922ef7; size =       939; name = XMENKEYS.TXT
+    file[]: crc = 4b82c1ac; size =   3676097; name = XMENPC.EXE
+    file[]: crc = a1adda59; size =    334134; name = YABOU.DAT
+    file[]: name = CD\CDDA.SOU; cdda = 120/135/69/5/6/5/116/142/120/127/120/153/152/153/73/71/154/150/23/149/133/135/116/112/143/111/121
+end
+
+end
