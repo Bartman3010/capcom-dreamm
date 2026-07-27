@@ -20,28 +20,36 @@ mount[]: vpath = $(rootpath); srcpath = $(ifsinstallpath)
 mount[]: vpath = D:\; srcpath = $(ifsinstallpath)\CD
 
 //
-// dynamic files
+// CD Label Script
 //
-dynamicfile[]: path = D:\$(CDLABEL); attributes = 8; contents = $(NULL)
+mount[cdw]: vpath = D:\; srcpath = ram
 
+script[cdlabel-init]:
+	code = [[[$(CRLF)
+	    // set the volume label on the CD
+        drive_set_label("D", "$$(CDLABEL)");
+    ]]]
+end
 //
 // registry
 //
-script[registry]: code = winregistry_import_file("C:\\DREAMM.REG")
-dynamicfile[]:
-    path = C:\DREAMM.REG
-    contents = [[[$(CRLF)
+REGISTRY = [[[$(CRLF)
         REGEDIT4
 		[HKEY_LOCAL_MACHINE\SOFTWARE\CAPCOM\w_spf2x]
 		"(Default)"=""
 		"CD-ROM"="D:\\"
 		"NET_USER"="DREAMM"
 		"SAVEDIR"="$$(rootpath)"
-		"SC_MODE"="SCREEN_MODE_360*240_16BIT_WINDOWS"
+		"SC_MODE"="SCREEN_MODE_640*480_8BIT_DIRECTX"
 		"SETUPCHECK"="SETUP_ALL_OK"
 		"SHORTCUT"="C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Capcom\\PUZZLE FIGHTER\\"
 		"WINTEMP"="C:\\Windows\\Temp\\W_SPF2X.EXE"
 	]]]
+	
+script[registry-init]:
+    code = [[[$(CRLF)
+        winregistry_import_raw("$$(REGISTRY)");
+    ]]]
 end
 
 //
