@@ -8,7 +8,7 @@ Supported Games:
 |Mega Man X4 / Rockman X4|Windows 95|US, JP|
 |Mega Man X5 / Rockman X5|Windows 95|US|
 |Super Puzzle Fighter 2 Turbo/X|Windows 95|US|
-|X-Men - Children of the Atom|DOS|US, EU|
+|X-Men - Children of the Atom|DOS|US, EU, Demo|
 
 Contributors
 
