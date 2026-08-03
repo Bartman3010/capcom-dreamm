@@ -6,9 +6,9 @@ desc[cap-puzzle]:
 name = Super Puzzle Fighter II Turbo / X
 icon = cap-puzzle.png
 machine = pc
-rootpath = C:\SPF2 Turbo
-launch = "$(rootpath)\$(EXENAME).exe" $(CMD_ARG)
-osenv = windows 98
+rootpath = C:\SPF2_Turbo
+launch = $(rootpath)\$(EXENAME).exe $(CMD_ARG)
+osenv = windows 95
 filter = nonlucas, netplay
 winres = 640x480x16
 
@@ -17,35 +17,34 @@ winres = 640x480x16
 //
 mount[]: vpath = C:\; srcpath = $(ifsdeltapath); writable = true
 mount[]: vpath = $(rootpath); srcpath = $(ifsinstallpath)
-mount[]: vpath = D:\; srcpath = $(ifsinstallpath)\CD
+mount[]: vpath = D:\; srcpath = $(ifsinstallpath)
+mount[cdid]: vpath = D:\; srcpath = ram
 
 //
 // CD Label Script
 //
-mount[cdw]: vpath = D:\; srcpath = ram
-
 script[cdlabel-init]:
 	code = [[[$(CRLF)
 	    // set the volume label on the CD
         drive_set_label("D", "$$(CDLABEL)");
     ]]]
 end
+
 //
 // registry
 //
 REGISTRY = [[[$(CRLF)
         REGEDIT4
 		[HKEY_LOCAL_MACHINE\SOFTWARE\CAPCOM\w_spf2x]
-		"(Default)"=""
-		"CD-ROM"="D:\\"
-		"NET_USER"="DREAMM"
-		"SAVEDIR"="$$(rootpath)"
-		"SC_MODE"="SCREEN_MODE_640*480_8BIT_DIRECTX"
+		"@"=
+		"CD_ROM"="D:\\"
+		"NET_USER"=
+		"SAVEDIR"="C:\\SPF2_Turbo\\"
+		"SC_MODE"="SCREEN_M"
 		"SETUPCHECK"="SETUP_ALL_OK"
 		"SHORTCUT"="C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Capcom\\PUZZLE FIGHTER\\"
-		"WINTEMP"="C:\\Windows\\Temp\\W_SPF2X.EXE"
+		"WINTEMP"="C:\\Users\\"
 	]]]
-	
 script[registry-init]:
     code = [[[$(CRLF)
         winregistry_import_raw("$$(REGISTRY)");
@@ -326,8 +325,10 @@ game[pc-cd-en]:
     file[]: crc = ac2f8117; size =   1032555; name = CD\PLW\SAKURA.PLW
     file[]: crc = 14026700; size =    492412; name = CD\PLW\SELECT.PLW
 	
+    file[]: crc = 9ee2baa1; size =      2048; name = CD\CDSECTOR000016.~RAW~
+	
 	EXENAME = EXEC_ST
-	CDLABEL = SPF2XT
+	CDLABEL = SPF2X_TURBO
 end
 	
 end
