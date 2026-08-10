@@ -6,19 +6,18 @@ desc[cap-puzzle]:
 name = Super Puzzle Fighter II Turbo / X
 icon = cap-puzzle.png
 machine = pc
-rootpath = C:\SPF2_Turbo
-launch = $(rootpath)\$(EXENAME).exe $(CMD_ARG)
+rootpath = C:\SPF2 TURBO
+launch = "$(rootpath)\$(EXENAME).exe" STARTUP
 osenv = windows 95
 filter = nonlucas, netplay
-winres = 640x480x16
+winres = 800x600x32
 
 //
 // filesystem
 //
 mount[]: vpath = C:\; srcpath = $(ifsdeltapath); writable = true
 mount[]: vpath = $(rootpath); srcpath = $(ifsinstallpath)
-mount[]: vpath = D:\; srcpath = $(ifsinstallpath)
-mount[cdid]: vpath = D:\; srcpath = ram
+mount[]: vpath = D:\; srcpath = $(ifsinstallpath)\CD
 
 //
 // CD Label Script
@@ -34,30 +33,19 @@ end
 // registry
 //
 REGISTRY = [[[$(CRLF)
-        REGEDIT4
-		[HKEY_LOCAL_MACHINE\SOFTWARE\CAPCOM\w_spf2x]
-		"@"=
-		"CD_ROM"="D:\\"
-		"NET_USER"=
-		"SAVEDIR"="C:\\SPF2_Turbo\\"
-		"SC_MODE"="SCREEN_M"
-		"SETUPCHECK"="SETUP_ALL_OK"
-		"SHORTCUT"="C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Capcom\\PUZZLE FIGHTER\\"
-		"WINTEMP"="C:\\Users\\"
-	]]]
+    REGEDIT4
+    [HKEY_LOCAL_MACHINE\Software\Capcom\w_spf2x]
+    "CD_ROM"="D:\\"
+    "DSETUP"="DIRECTX3_SETUP_OK"
+    "SAVEDIR"="$$(rootpath)\\"
+    "SC_MODE"=?"SCREEN_MODE_800*600_32BIT_DIRECTX"
+    "SETUPCEHCK"="SETUP_ALL_OK"
+    "NET_USER"=""
+]]]
 script[registry-init]:
     code = [[[$(CRLF)
         winregistry_import_raw("$$(REGISTRY)");
     ]]]
-end
-
-//
-// Shortcut Start
-//
-config[mode]:
-    title = Start Mode
-    option[startup]:  name = Game Start; CMD_ARG = STARTUP; priority = 1
-    option[setup]: name = Setup; CMD_ARG = SETUP
 end
 
 //
@@ -70,17 +58,20 @@ config[video]:
 end
 
 game[pc-cd-en]:
-	name = English CD
-	anchorfile = EXEC_ST.EXE
+    name = English CD
+    anchorfile = EXEC_ST.EXE
+    EXENAME = EXEC_ST
+    CDLABEL = SPF2X_TURBO
     file[]: crc = 3c272c75; size =     48128; name = EXEC_ST.EXE
 	
-	//CD-ROM
+    //CD-ROM
     file[]: crc = 36351a3d; size =   2008194; name = CD\CAPCOM.AVI
     file[]: crc = 3c272c75; size =     48128; name = CD\EXEC_ST.EXE
     file[]: crc = 830a89d2; size =       531; name = CD\README.TXT
     file[]: crc = ecbb4b55; size =        16; name = CD\SETDATA
     file[]: crc = 68238493; size =   1585152; name = CD\SETUP.EXE
     file[]: crc = 5abed4fc; size =     49152; name = CD\STARTUP.EXE
+    file[]: crc = e9d1d73c; size =   1573376; name = CD\UNINST.EXE
     file[]: crc = 7c6bea83; size =   1645568; name = CD\W_SPF2X.EXE
     file[]: crc = 4178d257; size =  21247484; name = CD\BGM\SPF01.WAV
     file[]: crc = 1885edab; size =  21218320; name = CD\BGM\SPF02.WAV
@@ -268,26 +259,6 @@ game[pc-cd-en]:
     file[]: crc = a92214ad; size =    270336; name = CD\EMI2\STAGE07.EMI
     file[]: crc = fea1b37e; size =    270336; name = CD\EMI2\STAGE08.EMI
     file[]: crc = 9da99912; size =    270336; name = CD\EMI2\STAGE09.EMI
-    file[]: crc = baaee1d6; size =    307640; name = CD\GOODIES\BMP001.BMP
-    file[]: crc = fc8f7b17; size =    308280; name = CD\GOODIES\BMP002.BMP
-    file[]: crc = 517548b0; size =    308280; name = CD\GOODIES\BMP003.BMP
-    file[]: crc = 1a53e3a0; size =    308284; name = CD\GOODIES\BMP004.BMP
-    file[]: crc = a86ac46d; size =    308280; name = CD\GOODIES\BMP005.BMP
-    file[]: crc = 5a92fb5f; size =    308280; name = CD\GOODIES\BMP006.BMP
-    file[]: crc = f41b3c1a; size =    308280; name = CD\GOODIES\BMP007.BMP
-    file[]: crc = 32a172c4; size =    308280; name = CD\GOODIES\BMP008.BMP
-    file[]: crc = dfd61b38; size =    308280; name = CD\GOODIES\BMP009.BMP
-    file[]: crc = e6328fc8; size =    308280; name = CD\GOODIES\BMP010.BMP
-    file[]: crc = c9ab7396; size =    308280; name = CD\GOODIES\BMP011.BMP
-    file[]: crc = e661942c; size =    308280; name = CD\GOODIES\BMP012.BMP
-    file[]: crc = 175139c1; size =    231880; name = CD\GOODIES\BMP013.BMP
-    file[]: crc = 0a90fccf; size =    285240; name = CD\GOODIES\BMP014.BMP
-    file[]: crc = b68efa4b; size =    308280; name = CD\GOODIES\BMP015.BMP
-    file[]: crc = 6628a1d3; size =    296760; name = CD\GOODIES\BMP016.BMP
-    file[]: crc = dbfc99f2; size =    247480; name = CD\GOODIES\BMP017.BMP
-    file[]: crc = ecbb859e; size =    289080; name = CD\GOODIES\BMP018.BMP
-    file[]: crc = eaee34e4; size =    308280; name = CD\GOODIES\BMP019.BMP
-    file[]: crc = fcd61b10; size =   2083321; name = CD\GOODIES\SPFTHEME.ZIP
     file[]: crc = 80109bc6; size =    145422; name = CD\ILLUST\CHIRA.LZF
     file[]: crc = 2a8afd45; size =    170861; name = CD\ILLUST\CHIRAN.LZF
     file[]: crc = 2f988bd3; size =    108299; name = CD\ILLUST\CHUN-LI.LZF
@@ -323,12 +294,7 @@ game[pc-cd-en]:
     file[]: crc = bc297b08; size =    767479; name = CD\PLW\MORIGAN.PLW
     file[]: crc = 48b7d3ea; size =    552989; name = CD\PLW\RYU.PLW
     file[]: crc = ac2f8117; size =   1032555; name = CD\PLW\SAKURA.PLW
-    file[]: crc = 14026700; size =    492412; name = CD\PLW\SELECT.PLW
-	
-    file[]: crc = 9ee2baa1; size =      2048; name = CD\CDSECTOR000016.~RAW~
-	
-	EXENAME = EXEC_ST
-	CDLABEL = SPF2X_TURBO
+    file[]: crc = 14026700; size =    492412; name = CD\PLW\SELECT.PLW	
 end
 	
 end
