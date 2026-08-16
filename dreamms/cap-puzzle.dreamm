@@ -11,7 +11,7 @@ launch = "$(rootpath)\$(EXENAME).exe" STARTUP
 osenv = windows 95
 filter = nonlucas, netplay
 winres = 800x600x32
-
+GAMERES = SCREEN_MODE_800*600_32BIT_DIRECTX
 //
 // filesystem
 //
@@ -38,7 +38,7 @@ REGISTRY = [[[$(CRLF)
     "CD_ROM"="D:\\"
     "DSETUP"="DIRECTX3_SETUP_OK"
     "SAVEDIR"="$$(rootpath)\\"
-    "SC_MODE"=?"SCREEN_MODE_800*600_32BIT_DIRECTX"
+    "SC_MODE"="$$(GAMERES)"
     "SETUPCEHCK"="SETUP_ALL_OK"
     "NET_USER"=""
 ]]]
@@ -46,6 +46,25 @@ script[registry-init]:
     code = [[[$(CRLF)
         winregistry_import_raw("$$(REGISTRY)");
     ]]]
+end
+
+//
+// game resolution
+//
+config[gameresolution]:
+	title = Game Resolution
+	option[3602408w]:  name = 360x240x8 (Windowed);  GAMERES = SCREEN_MODE_360*240_8BIT_WINDOWS
+	option[36024016w]: name = 360x240x16 (Windowed); GAMERES = SCREEN_MODE_360*240_16BIT_WINDOWS
+	option[3202408d]:  name = 320x240x8 (DirectX);   GAMERES = SCREEN_MODE_320*240_8BIT_DIRECTX
+	option[32024016d]: name = 320x240x16 (DirectX);  GAMERES = SCREEN_MODE_320*240_16BIT_DIRECTX
+	option[32024032d]: name = 320x240x32 (DirectX);  GAMERES = SCREEN_MODE_320*240_32BIT_DIRECTX
+	option[6404808d]:  name = 640x480x8 (DirectX);   GAMERES = SCREEN_MODE_640*480_8BIT_DIRECTX
+	option[64048016d]: name = 640x480x16 (DirectX);  GAMERES = SCREEN_MODE_640*480_16BIT_DIRECTX
+	option[64048032d]: name = 640x480x32 (DirectX);  GAMERES = SCREEN_MODE_640*480_32BIT_DIRECTX
+	option[8006008d]:  name = 800x600x8 (DirectX);   GAMERES = SCREEN_MODE_800*600_8BIT_DIRECTX
+	option[80060016d]: name = 800x600x16 (DirectX);  GAMERES = SCREEN_MODE_800*600_16BIT_DIRECTX
+	option[80060032d]: name = 800x600x32 (DirectX);  GAMERES = SCREEN_MODE_800*600_32BIT_DIRECTX; priority = 1
+	
 end
 
 //
