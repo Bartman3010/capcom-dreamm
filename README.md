@@ -9,6 +9,7 @@ Supported Games:
 |Mega Man X5 / Rockman X5|Windows 95|US|
 |Resident Evil / Biohazard|Windows 95|US|
 |Super Puzzle Fighter 2 Turbo/X|Windows 95|US|
+|Super Street Fighter 2 Turbo|MS-DOS|US|
 |X-Men - Children of the Atom|DOS|US, EU, Demo|
 
 Contributors
