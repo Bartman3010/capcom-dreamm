@@ -1,0 +1,73 @@
+desc[usg-sf2]:
+
+name = Street Fighter II: The World Warrior
+icon = usg-sf2.png
+machine = pc
+rootpath = C:\SF2
+launch = $(rootpath)\SF2.EXE
+osenv = dos
+fixdivover = true
+mips = $(MIPS_286_10)
+ramkb = 2048
+audiohw = $(AUDIOHW)
+videohw = svga
+
+//
+// filesystem
+//
+mount[]: vpath = C:\; srcpath = $(ifsdeltapath); writable = true
+mount[]: vpath = $(rootpath); srcpath = $(ifsinstallpath)
+
+//
+// Music Setting
+//
+config[musicset]:
+	title = Audio Hardware
+		option[pcsm]:    name = $(SPEAKER_NAME); 			  AUDIOHW = speaker
+		option[adlibm]:  name = $(ADLIB_NAME);   			  AUDIOHW = adlib
+		option[sb]:      name = $(SB16_NAME);   			  AUDIOHW = sb16; priority = 1
+		option[roland]:  name = $(MT32_NAME) + $(SB16_NAME);  AUDIOHW = mt32+sb16
+	
+end
+
+//
+// English DOS
+//
+game[pc-dos-en]:
+    name = English DOS
+    anchorfile = SF2.EXE
+    anchordepth = 3
+    file[]: crc = 287f24a0; size =    774204; name = BACKDROP.SF2
+    file[]: crc = cc82e4ef; size =       201; name = EXTRAS.SF2
+    file[]: crc = 61c8ba48; size =    643620; name = GENERAL.SF2
+    file[]: crc = ec9cee7a; size =     63861; name = INDEX.SF2
+    file[]: crc = 0a4ee047; size =      3910; name = SBDRIVER.DRV
+    file[]: crc = e6203986; size =     79948; name = SF2.EXE
+    file[]: crc = abbf0689; size =       545; name = SF2.PIF
+    file[]: crc = 833c9942; size =   1297466; name = SPRITE1.SF2
+    file[]: crc = dca64394; size =   1302349; name = SPRITE2.SF2
+end
+
+//
+// English DOS, Alt
+//
+game[pc-dos-en-v2]:
+    name = English DOS, Alt
+    anchorfile = SF2.EXE
+    anchordepth = 3
+    file[]: crc = 74e3e113; size =      2048; name = DMA1IRQ5.DRV
+    file[]: crc = 22df2ca6; size =      2048; name = DMA1IRQ7.DRV
+    file[]: crc = 088453df; size =      2048; name = DMA3IRQ5.DRV
+    file[]: crc = 5eb89e6a; size =      2048; name = DMA3IRQ7.DRV
+    file[]: crc = 1704a7fb; size =       203; name = EXTRAS.SF2
+    file[]: crc = 61c8ba48; size =    643620; name = GENERAL.SF2
+    file[]: crc = ec9cee7a; size =     63861; name = INDEX.SF2
+    file[]: crc = 95c49580; size =      4004; name = INSTALL.EXE
+    file[]: crc = 1b0082eb; size =      2048; name = SBDRIVER.DRV
+    file[]: crc = 203d1b6d; size =     80492; name = SF2.EXE
+    file[]: crc = abbf0689; size =       545; name = SF2.PIF
+    file[]: crc = 833c9942; size =   1297466; name = SPRITE1.SF2
+    file[]: crc = dca64394; size =   1302349; name = SPRITE2.SF2
+end
+
+end

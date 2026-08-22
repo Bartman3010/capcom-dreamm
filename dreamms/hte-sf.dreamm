@@ -1,0 +1,69 @@
+desc[hte-sf]:
+
+name = Street Fighter
+icon = hte-sf.png
+machine = pc
+rootpath = C:\SF
+launch = $(rootpath)\SF.EXE
+osenv = dos
+fixdivover = true
+mips = $(MIPS_286_10)
+ramkb = 512
+audiohw = speaker
+videohw = ega
+
+//
+// filesystem
+//
+mount[]: vpath = C:\; srcpath = $(ifsdeltapath); writable = true
+mount[]: vpath = $(rootpath); srcpath = $(ifsinstallpath)
+
+//
+// English DOS
+//
+game[pc-dos-en]:
+    name = English DOS
+    anchorfile = SF.EXE
+    file[]: crc = 9b7bd3e1; size =      2811; name = A
+    file[]: crc = b569632f; size =      2976; name = A.FLG
+    file[]: crc = 307a2ea5; size =      1260; name = A.NAM
+    file[]: crc = 89c0a7fc; size =      5672; name = B
+    file[]: crc = 8a4c5139; size =      2976; name = B.FLG
+    file[]: crc = 12c781b9; size =      1260; name = B.NAM
+    file[]: crc = d645defc; size =       288; name = BALL
+    file[]: crc = fbf2c0ae; size =     29617; name = C
+    file[]: crc = f52a4b8a; size =      2976; name = C.FLG
+    file[]: crc = 4803b42b; size =      1260; name = C.NAM
+    file[]: crc = 2c0c3e60; size =      7346; name = D
+    file[]: crc = 8f358e4f; size =      2976; name = D.FLG
+    file[]: crc = 046c9619; size =      1260; name = D.NAM
+    file[]: crc = a48535ad; size =     20432; name = E
+    file[]: crc = 184fe122; size =      2976; name = E.FLG
+    file[]: crc = 63014f0d; size =      1260; name = E.NAM
+    file[]: crc = 8fc9593a; size =     15456; name = F
+    file[]: crc = b3bc45e6; size =      1260; name = F.NAM
+    file[]: crc = 080f006c; size =     16185; name = G
+    file[]: crc = 96694a04; size =      1260; name = G.NAM
+    file[]: crc = 6d4d48c5; size =     20505; name = H
+    file[]: crc = 57f9a89f; size =      1260; name = H.NAM
+    file[]: crc = 78c5801b; size =     17246; name = I
+    file[]: crc = 27162374; size =      1260; name = I.NAM
+    file[]: crc = 1406269f; size =      1260; name = J.NAM
+    file[]: crc = 2f55d5e4; size =     22050; name = MBA
+    file[]: crc = 1e4281c3; size =     23814; name = MBB
+    file[]: crc = 31ddae46; size =     22050; name = MBC
+    file[]: crc = 55d93424; size =     18522; name = MBD
+    file[]: crc = 78676dff; size =     25578; name = MBE
+    file[]: crc = 72bc6844; size =     25578; name = MBF
+    file[]: crc = 252e1c08; size =     17640; name = MBG
+    file[]: crc = 16f961d6; size =     19404; name = MBH
+    file[]: crc = 6e4e2b11; size =     24696; name = MBI
+    file[]: crc = 2c5c5651; size =     16758; name = MBJ
+    file[]: crc = 6b8f6369; size =     34398; name = P1.EMB
+    file[]: crc = dbb3f975; size =      1260; name = P1.NAM
+    file[]: crc = e0014eef; size =     54209; name = SF.EXE
+    file[]: crc = dd10111c; size =       288; name = SPARK
+    file[]: crc = 278f3d74; size =       720; name = VS
+end
+
+end
