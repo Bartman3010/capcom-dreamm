@@ -5,9 +5,11 @@ Supported Games:
 |Mega Man Legends / Rockman DASH|Windows 95|US, JP|
 |Mega Man X / Rockman X|MS-DOS, Windows 95| US, JP|
 |Mega Man X3 / Rockman X3|Windows 95|US, EU, JP|
-|Mega Man X4 / Rockman X4|Windows 95|US, JP|
+|Mega Man X4 / Rockman X4|Windows 95|US, EU, JP, JP Demo|
 |Mega Man X5 / Rockman X5|Windows 95|US, JP|
 |Resident Evil / Biohazard|Windows 95|US|
+|Resident Evil 2/ Biohazard 2|Windows 95|US|
+|Resident Evil 3: NEMESIS / Biohazard 3: LAST ESCAPE|Windows 95|US, JP|
 |Street Fighter|MS-DOS|US|
 |Street Fighter II The World Warrior|MS-DOS|US|
 |Street Fighter Alpha / ZERO Warrior's Dreams|Windows 95|US, JP|
