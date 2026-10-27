@@ -1,0 +1,117 @@
+desc[cap-re3]:
+
+name = Resident Evil 3: NEMESIS / Biohazard 3: LAST ESCAPE
+icon = cap-re3.png
+machine = pc
+osenv = windows 98
+winres = 1024x768x16
+
+config[modesel]:
+    title = Select Mode
+    option[game]: name = Main Game; launch = "$(rootpath)\$(MAINGAME)"; 
+    option[merc]: name = Mercenaries; launch = "$(rootpath)\$(MERCENARIES)";
+end
+
+//
+// filesystem
+//
+mount[]: vpath = C:\; srcpath = ram; writable = true
+mount[]: vpath = $(rootpath); srcpath = $(ifsinstallpath)
+
+//
+// English US CD
+//
+game[pc-cd-en-us]:
+    name = English US CD
+    anchorfile = ResidentEvil3.exe
+    
+    file[]: crc = 1878ee11; size =      1834; name = bio3.ini
+    file[]: crc = ed0fec55; size =      1172; name = BioKey.ini
+    file[]: crc = 6aae75ef; size =    159744; name = R3Setup.exe
+    file[]: crc = 267b665a; size =   1273856; name = RE3_MERCE.exe
+    file[]: crc = 929f6cae; size =   1273856; name = ResidentEvil3.exe
+    file[]: crc = f1c89b8c; size =   3295232; name = Rofs1.dat
+    file[]: crc = 0703f509; size =   5654528; name = Rofs10.dat
+    file[]: crc = 042f4dc7; size =   4986880; name = Rofs11.dat
+    file[]: crc = 638e4537; size =  10391552; name = Rofs12.dat
+    file[]: crc = 98dc3586; size =  10463232; name = Rofs13.dat
+    file[]: crc = 46df42c5; size =  23320576; name = Rofs14.dat
+    file[]: crc = 93dced3d; size =  73754624; name = Rofs15.dat
+    file[]: crc = ed15817e; size =     63488; name = Rofs2.dat
+    file[]: crc = ee7f31e5; size =   2209792; name = Rofs3.dat
+    file[]: crc = 0aeeb066; size =   3186688; name = Rofs4.dat
+    file[]: crc = c677dc23; size =   6041600; name = Rofs5.dat
+    file[]: crc = bcb20e92; size =     96256; name = Rofs6.dat
+    file[]: crc = d0235f81; size =  36157440; name = Rofs7.dat
+    file[]: crc = f2968265; size = 139276288; name = Rofs8.dat
+    file[]: crc = 9989fb13; size =  10579968; name = Rofs9.dat
+    file[]: crc = 1505b647; size =   5247592; name = zmovie\Eidos.dat
+    file[]: crc = aa8612e6; size =  12463612; name = zmovie\enda.dat
+    file[]: crc = 3d8d5235; size =  12881932; name = zmovie\endb.dat
+    file[]: crc = 63b1dfcb; size =   6065640; name = zmovie\ins01.dat
+    file[]: crc = d60a6c0d; size =   3404660; name = zmovie\ins02.dat
+    file[]: crc = 090b626c; size =   4615464; name = zmovie\ins03.dat
+    file[]: crc = d7752d9e; size =   6790728; name = zmovie\ins04.dat
+    file[]: crc = c81cec79; size =   2918944; name = zmovie\ins05.dat
+    file[]: crc = fc625205; size =   7076580; name = zmovie\ins06.dat
+    file[]: crc = ac7fa42e; size =   5340552; name = zmovie\ins07.dat
+    file[]: crc = 51cec6f8; size =   4285456; name = zmovie\ins08.dat
+    file[]: crc = 900d2b74; size =   3734668; name = zmovie\ins09.dat
+    file[]: crc = babe7c2c; size =  20665008; name = zmovie\opn.dat
+    file[]: crc = 1f1965ef; size =   3651004; name = zmovie\roop.dat
+    file[]: crc = 3a2368a0; size =   3651004; name = zmovie\roop_nee.dat
+    file[]: crc = 3a2368a0; size =   3651004; name = zmovie\roopne.dat
+    
+    rootpath = C:\Program Files\CAPCOM\Resident Evil 3
+    MAINGAME = ResidentEvil3.exe
+    MERCENARIES = RE3_MERCE.EXE
+end
+
+//
+// Japanese CD
+//
+game[pc-cd-jp]:
+    name = Japanese CD
+    locale = ja-jp
+    anchorfile = Bio3_PC.exe
+    
+    file[]: crc = bd8d6614; size =       668; name = bio3.ini
+    file[]: crc = 698c3ed3; size =   1277952; name = Bio3_PC.exe
+    file[]: crc = 5adabd8e; size =   1277952; name = Bio3_PC_Mercenaries.exe
+    file[]: crc = beeb2f7a; size =      1186; name = BioKey.ini
+    file[]: crc = f1c89b8c; size =   3295232; name = Rofs1.dat
+    file[]: crc = 0703f509; size =   5654528; name = Rofs10.dat
+    file[]: crc = 042f4dc7; size =   4986880; name = Rofs11.dat
+    file[]: crc = 638e4537; size =  10391552; name = Rofs12.dat
+    file[]: crc = 7d2960b7; size =  10471424; name = Rofs13.dat
+    file[]: crc = 46df42c5; size =  23320576; name = Rofs14.dat
+    file[]: crc = 93dced3d; size =  73754624; name = Rofs15.dat
+    file[]: crc = 07de15ed; size =    102400; name = Rofs2.dat
+    file[]: crc = ee7f31e5; size =   2209792; name = Rofs3.dat
+    file[]: crc = e46656e9; size =   3420160; name = Rofs4.dat
+    file[]: crc = c677dc23; size =   6041600; name = Rofs5.dat
+    file[]: crc = bcb20e92; size =     96256; name = Rofs6.dat
+    file[]: crc = d0235f81; size =  36157440; name = Rofs7.dat
+    file[]: crc = 9a076d7b; size = 139200512; name = Rofs8.dat
+    file[]: crc = 9989fb13; size =  10579968; name = Rofs9.dat
+    file[]: crc = aa8612e6; size =  12463612; name = zmovie\enda.dat
+    file[]: crc = 3d8d5235; size =  12881932; name = zmovie\endb.dat
+    file[]: crc = 63b1dfcb; size =   6065640; name = zmovie\ins01.dat
+    file[]: crc = d60a6c0d; size =   3404660; name = zmovie\ins02.dat
+    file[]: crc = 090b626c; size =   4615464; name = zmovie\ins03.dat
+    file[]: crc = d7752d9e; size =   6790728; name = zmovie\ins04.dat
+    file[]: crc = c81cec79; size =   2918944; name = zmovie\ins05.dat
+    file[]: crc = fc625205; size =   7076580; name = zmovie\ins06.dat
+    file[]: crc = ac7fa42e; size =   5340552; name = zmovie\ins07.dat
+    file[]: crc = 51cec6f8; size =   4285456; name = zmovie\ins08.dat
+    file[]: crc = 900d2b74; size =   3734668; name = zmovie\ins09.dat
+    file[]: crc = babe7c2c; size =  20665008; name = zmovie\opn.dat
+    file[]: crc = 1f1965ef; size =   3651004; name = zmovie\roop.dat
+    file[]: crc = 3a2368a0; size =   3651004; name = zmovie\roop_nee.dat
+    
+    rootpath = C:\Program Files\CAPCOM\BIOHAZARD3
+    MAINGAME = Bio3_PC.exe
+    MERCENARIES = Bio3_PC_Mercenaries.EXE
+end
+
+end

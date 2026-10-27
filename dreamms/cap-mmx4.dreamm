@@ -11,8 +11,6 @@ launch = "$(rootpath)\$(EXENAME).exe"
 osenv = windows 95
 winres = 640x480x8
 
-
-
 //
 // filesystem
 //
@@ -38,6 +36,7 @@ end
 REGISTRY = [[[$(CRLF)
         REGEDIT4
 		[HKEY_LOCAL_MACHINE\SOFTWARE\CAPCOM\MEGAMAN X4]
+		@=""
 		"BgmPath"="$$(rootpath)\BGM"
 		"CD Drive"="D:\\"
 		"DataPath"="$$(rootpath)\ARC"
@@ -49,11 +48,45 @@ REGISTRY = [[[$(CRLF)
 		"Install SE"="True"
 		"MoviePath"="$$(rootpath)\STR"
 		"SePath"="$$(rootpath)\SE"
+		[HKEY_CURRENT_USER\SOFTWARE\CAPCOM\MEGAMAN X4]
+		@=
+		DoubleView=?dword:1
+		EasyMode=?dword:0
+		FullScreen=?dword:1
+		ScreenMode=?640,480,16
+		[HKEY_CURRENT_USER\SOFTWARE\CAPCOM\MEGAMAN X4\KeyConfig]
+		@=
+		GamePad=?b:00,00,01,00,02,00,03,00,04,00,05,00,06,00,07,00,08,00,0A,00,0B,00,09,00,0D,00
+		KeyBoard=?b:C8,00,D0,00,CB,00,CD,00,2E,00,2D,00,2C,00,2F,00,21,00,1E,00,1F,00,00,00,00,00
+		
+		]]]
+        
+DEMOREGISTRY = [[[$(CRLF)
+        REGEDIT4
+        [HKEY_LOCAL_MACHINE\SOFTWARE\CAPCOM\ROCKMAN X4]
+        "Install Directory"="$$(rootpath)"
+        "CD Drive"="D:\\"
+        "Install Program"="True"
+        "Install Resource"="True"
+        "DataPath"="$$(rootpath)\\ARC"
+        "Install SE"="True"
+        "SePath"="$$(rootpath)\\SE"
+        "MoviePath"=""
+        "BgmPath"=""
+		
 		]]]
 
 script[registry-init]:
+    condition = is_game()
     code = [[[$(CRLF)
         winregistry_import_raw("$$(REGISTRY)");
+    ]]]
+end
+
+script[registry-init-demo]:
+    condition = is_demo()
+    code = [[[$(CRLF)
+        winregistry_import_raw("$$(DEMOREGISTRY)");
     ]]]
 end
 
@@ -189,6 +222,9 @@ fragment[common]:
 
 end
 
+//
+// English CD European
+//
 game[pc-cd-en]:
 	name = English CD
 	imports = common
@@ -367,8 +403,26 @@ game[pc-cd-en]:
 
 	EXENAME = mmx4
 	CDLABEL = MegamanX4
+	
 end
 
+//
+// PC CD US English
+//
+game[pc-cd-us]:
+	name = English CD US
+	imports = common, pc-cd-en
+	anchorfile = x4.id
+    file[]: crc = b377f954; size =    958464; name = MMX4.exe
+
+	EXENAME = mmx4
+	CDLABEL = MegamanX4
+	
+	end
+
+//
+// PC CD Japanese
+//
 game[pc-cd-jp]:
 	name = Japanese CD
 	imports = common
@@ -551,6 +605,71 @@ game[pc-cd-jp]:
 	
 	EXENAME = rmx4
 	CDLABEL = RockmanX4
+	locale = ja-JP
+	
+end
+
+//
+// Japanese Demo
+//
+demo[pc-demo-jp]:
+	name = Japanese Demo
+	anchorfile = RMX4.EXE
+    anchordepth = 2
+    file[]: crc = fe893233; size =    955392; name = RMX4.EXE
+    file[]: crc = a42693d3; size =      8192; name = ARC\CAPCOM.ARC
+    file[]: crc = 7d50e0e1; size =      6144; name = ARC\COL00_0X.ARC
+    file[]: crc = b71d20a7; size =      6144; name = ARC\COL00_0Z.ARC
+    file[]: crc = ac40f68d; size =      6144; name = ARC\COL00_1X.ARC
+    file[]: crc = 660d36cb; size =      6144; name = ARC\COL00_1Z.ARC
+    file[]: crc = 1c9db651; size =      6144; name = ARC\COL02_1Z.ARC
+    file[]: crc = e4dc24fc; size =      6144; name = ARC\COL0D_0X.ARC
+    file[]: crc = 5ad915f0; size =      6144; name = ARC\COL0D_0Z.ARC
+    file[]: crc = c476667c; size =      6144; name = ARC\COL0E_00.ARC
+    file[]: crc = 67d16aaf; size =      6144; name = ARC\COL0E_01.ARC
+    file[]: crc = cdfd2556; size =      8464; name = ARC\EXIT.BIN
+    file[]: crc = 48fe4a8d; size =    100352; name = ARC\LOAD.ARC
+    file[]: crc = 3c1b5179; size =      9404; name = ARC\MOJIPAT.ARC
+    file[]: crc = 12652f53; size =     34816; name = ARC\MOJIW1.ARC
+    file[]: crc = ee157516; size =     34816; name = ARC\MOJIW2.ARC
+    file[]: crc = 57112ea7; size =     65536; name = ARC\PAL000.DAT
+    file[]: crc = 80997f5c; size =     65536; name = ARC\PAL010.DAT
+    file[]: crc = b079fb3b; size =     65536; name = ARC\PAL200.DAT
+    file[]: crc = 33abf5ce; size =     65536; name = ARC\PAL210.DAT
+    file[]: crc = 174730fa; size =     65536; name = ARC\PALD00.DAT
+    file[]: crc = ebace953; size =     65536; name = ARC\PALE00.DAT
+    file[]: crc = 7f200d08; size =     65536; name = ARC\PALE10.DAT
+    file[]: crc = ec7537fe; size =    423936; name = ARC\PL00.ARC
+    file[]: crc = 9652dd2c; size =      1256; name = ARC\PL00SEP.ARC
+    file[]: crc = e2d18a83; size =    430080; name = ARC\PL01.ARC
+    file[]: crc = 9652dd2c; size =      1256; name = ARC\PL01SEP.ARC
+    file[]: crc = 029bc08d; size =      8192; name = ARC\PLDEMO00.ARC
+    file[]: crc = 581b8bc6; size =      8192; name = ARC\PLDEMO01.ARC
+    file[]: crc = 82127947; size =      8288; name = ARC\RETURN.BIN
+    file[]: crc = cf1a636f; size =    598016; name = ARC\ST00_00.ARC
+    file[]: crc = de6f38df; size =    440320; name = ARC\ST00_01.ARC
+    file[]: crc = 2372a7ff; size =    573440; name = ARC\ST02_01.ARC
+    file[]: crc = 494f48ca; size =    204800; name = ARC\ST0_1_1.ARC
+    file[]: crc = 2397918d; size =    231424; name = ARC\ST0D_0X.ARC
+    file[]: crc = 0bdddb7e; size =    227328; name = ARC\ST0D_0Z.ARC
+    file[]: crc = 1b02aa54; size =    133120; name = ARC\ST0E_00.ARC
+    file[]: crc = a52e7f2b; size =    221184; name = ARC\ST0E_01.ARC
+    file[]: crc = 8635db39; size =    104909; name = SE\SE00_A00.SEZ
+    file[]: crc = 1763fdae; size =    209893; name = SE\SE00_A10.SEZ
+    file[]: crc = dec59bee; size =    249619; name = SE\SE00_E00.SEZ
+    file[]: crc = daa79a9e; size =    175897; name = SE\SE00_E10.SEZ
+    file[]: crc = 73346ff7; size =    231602; name = SE\SE00_E11.SEZ
+    file[]: crc = fd6aa4cf; size =    192329; name = SE\SE02_A00.SEZ
+    file[]: crc = 0a22221b; size =    341890; name = SE\SE02_E10.SEZ
+    file[]: crc = 4468cb1c; size =    885377; name = SE\SE_COM.SEZ
+    file[]: crc = 3f681c3c; size =    498987; name = SE\SE_PL00.SEZ
+    file[]: crc = 05f86692; size =    203223; name = SE\SE_PL01.SEZ
+    file[]: crc = 96ea6400; size =     68589; name = SE\SE_PLSEL.SEZ
+    file[]: crc = 8d51c58f; size =     80591; name = SE\SE_STSEL.SEZ
+    file[]: crc = 3797b95f; size =    207637; name = SE\VO_PL00.SEZ
+    file[]: crc = 55cd0d65; size =    208956; name = SE\VO_PL01.SEZ
+    
+	EXENAME = rmx4
 	locale = ja-JP
 	
 end

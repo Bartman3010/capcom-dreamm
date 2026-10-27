@@ -3,24 +3,43 @@
 //
 desc[cap-resevil]:
 
-name = Resident Evil
+name = Resident Evil / Biohazard
 machine = pc
 icon = cap-resevil.png
 rootpath = C:\Program Files\RESIDENT EVIL
-launch = "D:\$(EXENAME).exe"
+launch = "D:\$(EXENAME).exe" $(RENDERARG)
 osenv = windows 95
 filter = nonlucas, action, capcom, horror
 winres = 640x480x16
-EXENAME = ResidentEvil
+EXENAME = NEWEUR//ResidentEvil
 CDLABEL = RESIDENT EVIL
-
-
+RENDERARG = $(NULL)
 //
 // filesystem
 //
 mount[]: vpath = C:\; srcpath = $(ifsdeltapath); writable = true
 mount[]: vpath = $(rootpath); srcpath = $(ifsinstallpath)
 mount[]: vpath = D:\; srcpath = $(ifsinstallpath)\CD; optional = true
+
+//
+// Network Mode Toggle
+//
+config[exetype]:
+	condition = file_exists("$$(rootpath)\\NEWEUR.EXE")
+	title = Render Mode
+	option[ddraw]: name = 3dfx; EXENAME = ResidentEvil; launch = "D:\$(EXENAME).EXE" $(RENDERARG)
+	option[d3d]: name = Direct3D; EXENAME = NEWEUR; launch = "$(rootpath)\$(EXENAME).EXE" $(RENDERARG)
+end
+
+//
+// Network Mode Toggle
+//
+config[renderarg]:
+	title = Render Arguments
+	option[null]: name = NULL; RENDERARG = $(NULL)
+	option[nocard1]: name = Software Mode A (NoCard1); RENDERARG = /nocard1
+	option[nocard2]: name = Software Mode B (NoCard2); RENDERARG = /nocard2
+end
 
 //
 // initialization script
@@ -30,6 +49,22 @@ script[cd-init]:
         // set the volume label on the CD
         drive_set_label("D", "$$(CDLABEL)");
 	]]]
+end
+
+//
+// Checker
+//
+configutil[]:
+    name = Checker
+    launch = "D:\Checker.EXE"
+end
+
+//
+// Launcher
+//
+configutil[]:
+    name = Launcher
+    launch = "D:\Launch.EXE"
 end
 
 //
@@ -55,8 +90,8 @@ REGISTRY = [[[$(CRLF)
       00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
       00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
       00,00,00,00,00,00,00,00
-    "Display Driver"=dword:00000000
-    "Install Flag"=dword:0000003b
+    "Display Driver"=?dword:00000000
+    "Install Flag"=?dword:0000003b
     "X Size"=dword:00000280
     "Y Size"=dword:000001e0
     "Bit Depth"=dword:00000000
@@ -65,6 +100,7 @@ REGISTRY = [[[$(CRLF)
 ]]]
 
 script[registry-init]:
+	condition = is_windows()
     code = [[[$(CRLF)
         winregistry_import_raw("$$(REGISTRY)");
     ]]]
@@ -381,34 +417,34 @@ game[pc-cd-en]:
     file[]: crc = bf0c7b58; size =     41504; name = usa\ITEM_M2\MAP0E.TIM
     file[]: crc = 27fabed2; size =     16928; name = usa\ITEM_M2\Map_blue.tim
     file[]: crc = d067f810; size =     93772; name = usa\ITEM_M2\MINI.ivm
-    file[]: crc = 06ea108f; size =   1535452; name = usa\movie\capcom.avi
-    file[]: crc = 0c77cf42; size =   1641852; name = usa\movie\dm1.avi
-    file[]: crc = e7df6c25; size =   1641852; name = usa\movie\dm2.avi
-    file[]: crc = cdb17310; size =   3263612; name = usa\movie\dm3.avi
-    file[]: crc = 5674061b; size =   3373868; name = usa\movie\dm4.avi
-    file[]: crc = 352481bb; size =   3607484; name = usa\movie\dm6.avi
-    file[]: crc = 6776e6e5; size =   1567676; name = usa\movie\dm7.avi
-    file[]: crc = 4acd8a44; size =   2823548; name = usa\movie\dm8.avi
-    file[]: crc = 1841b63c; size =   4606300; name = usa\movie\dmb.avi
-    file[]: crc = bf5050b9; size =   4604252; name = usa\movie\dmc.avi
-    file[]: crc = e7559ee3; size =   2850364; name = usa\movie\dmd.avi
-    file[]: crc = a8b16784; size =   3139772; name = usa\movie\dme.avi
-    file[]: crc = 421ebd1e; size =   1389788; name = usa\movie\dmf.avi
-    file[]: crc = 753db822; size =  14081404; name = usa\movie\ed1.avi
-    file[]: crc = ebc8e1d5; size =  10651804; name = usa\movie\ed2.avi
-    file[]: crc = 326b07e0; size =   9494716; name = usa\movie\ed3.avi
-    file[]: crc = d22b346f; size =  10401148; name = usa\movie\ed6.avi
-    file[]: crc = af7fa2dc; size =  10388860; name = usa\movie\ed7.avi
-    file[]: crc = d6c20c58; size =   1302844; name = usa\movie\ed8.avi
-    file[]: crc = 611b17ef; size =  11641820; name = usa\movie\eu4.avi
-    file[]: crc = c5da4401; size =  12526524; name = usa\movie\eu5.avi
-    file[]: crc = ea742568; size =   2718172; name = usa\movie\ou.avi
-    file[]: crc = aed77cde; size =  55463724; name = usa\movie\Pu.avi
-    file[]: crc = b3e335a2; size =  19667292; name = usa\movie\staf_r.avi
-    file[]: crc = 107fda50; size =  19149180; name = usa\movie\stfc_r.avi
-    file[]: crc = 16274ca4; size =  19493244; name = usa\movie\stfj_r.avi
-    file[]: crc = 0bef7e1a; size =  19790204; name = usa\movie\stfz_r.avi
-    file[]: crc = 1a22673c; size =   4013932; name = usa\movie\vlogo.avi
+    file[]: crc = 06ea108f; size =   1535452; name = CD\horr\usa\movie\capcom.avi
+    file[]: crc = 0c77cf42; size =   1641852; name = CD\horr\usa\movie\dm1.avi
+    file[]: crc = e7df6c25; size =   1641852; name = CD\horr\usa\movie\dm2.avi
+    file[]: crc = cdb17310; size =   3263612; name = CD\horr\usa\movie\dm3.avi
+    file[]: crc = 5674061b; size =   3373868; name = CD\horr\usa\movie\dm4.avi
+    file[]: crc = 352481bb; size =   3607484; name = CD\horr\usa\movie\dm6.avi
+    file[]: crc = 6776e6e5; size =   1567676; name = CD\horr\usa\movie\dm7.avi
+    file[]: crc = 4acd8a44; size =   2823548; name = CD\horr\usa\movie\dm8.avi
+    file[]: crc = 1841b63c; size =   4606300; name = CD\horr\usa\movie\dmb.avi
+    file[]: crc = bf5050b9; size =   4604252; name = CD\horr\usa\movie\dmc.avi
+    file[]: crc = e7559ee3; size =   2850364; name = CD\horr\usa\movie\dmd.avi
+    file[]: crc = a8b16784; size =   3139772; name = CD\horr\usa\movie\dme.avi
+    file[]: crc = 421ebd1e; size =   1389788; name = CD\horr\usa\movie\dmf.avi
+    file[]: crc = 753db822; size =  14081404; name = CD\horr\usa\movie\ed1.avi
+    file[]: crc = ebc8e1d5; size =  10651804; name = CD\horr\usa\movie\ed2.avi
+    file[]: crc = 326b07e0; size =   9494716; name = CD\horr\usa\movie\ed3.avi
+    file[]: crc = d22b346f; size =  10401148; name = CD\horr\usa\movie\ed6.avi
+    file[]: crc = af7fa2dc; size =  10388860; name = CD\horr\usa\movie\ed7.avi
+    file[]: crc = d6c20c58; size =   1302844; name = CD\horr\usa\movie\ed8.avi
+    file[]: crc = 611b17ef; size =  11641820; name = CD\horr\usa\movie\eu4.avi
+    file[]: crc = c5da4401; size =  12526524; name = CD\horr\usa\movie\eu5.avi
+    file[]: crc = ea742568; size =   2718172; name = CD\horr\usa\movie\ou.avi
+    file[]: crc = aed77cde; size =  55463724; name = CD\horr\usa\movie\Pu.avi
+    file[]: crc = b3e335a2; size =  19667292; name = CD\horr\usa\movie\staf_r.avi
+    file[]: crc = 107fda50; size =  19149180; name = CD\horr\usa\movie\stfc_r.avi
+    file[]: crc = 16274ca4; size =  19493244; name = CD\horr\usa\movie\stfj_r.avi
+    file[]: crc = 0bef7e1a; size =  19790204; name = CD\horr\usa\movie\stfz_r.avi
+    file[]: crc = 1a22673c; size =   4013932; name = CD\horr\usa\movie\vlogo.avi
     file[]: crc = 79771af7; size =      4404; name = usa\objspr\OSP00000.pak
     file[]: crc = fb94ce3d; size =      3283; name = usa\objspr\OSP00001.pak
     file[]: crc = 358d81d5; size =      2337; name = usa\objspr\OSP00003.pak
@@ -3018,6 +3054,15 @@ game[pc-cd-en]:
     file[]: crc = c064b0ed; size =    119660; name = usa\voice\VB00_31C.WAV
     file[]: crc = 0a1df163; size =    153668; name = usa\voice\VB00_31D.WAV
     file[]: crc = 740be5c0; size =    174508; name = usa\voice\VB00_40.WAV
+end
+
+addon[d3d-eur]:
+	name = Direct3D Update
+	upgradeids = pc-cd-en
+	anchorfile = NEWEUR.EXE
+    file[]: crc = 6fa7c916; size =     34304; name = BIOVFWUS.BIN
+    file[]: crc = 64acbc07; size =     42268; name = DEM784.TTF
+    file[]: crc = a4f8f0ab; size =    993280; name = NEWEUR.EXE
 end
 
 end

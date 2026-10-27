@@ -32,13 +32,6 @@ script[init]:
     ]]]
 end
 
-fragment[install-base]:
-	rootpath = D:\
-	launch = D:\Setup.exe
-
-
-end
-
 game[pc-cd-en]:
 	name = English CD
 	anchorfile = x5op.dat
@@ -475,53 +468,6 @@ game[pc-cd-jp]:
     rootpath = C:\ROCKMAN X5
 	EXENAME = x5
 	CDLABEL = ROCKMAN_X5
-	
-end
-
-//
-// Installer for English CD
-//
-installer[pc-cd-en-install]:
-	name = English CD Installer
-	imports = install-base
-	installid = pc-cd-en
-	anchorfile = start.exe
-	EXENAME = X5
-	CDLABEL = MegamanX5_eng
-    file[]: crc = 1c073d9f; size =        43; name = CD\autorun.inf
-    file[]: crc = c38735c3; size =    431566; name = CD\data1.cab
-    file[]: crc = 1749c52b; size =     31779; name = CD\data1.hdr
-    file[]: crc = a2db83ce; size =    510522; name = CD\data2.cab
-    file[]: crc = 2050f89f; size =    340866; name = CD\ikernel.ex_
-    file[]: crc = 64eee7bd; size =       417; name = CD\layout.bin
-    file[]: crc = 7013c394; size =     54784; name = CD\Setup.exe
-    file[]: crc = 5f93bc15; size =        82; name = CD\Setup.ini
-    file[]: crc = 918835e2; size =    137993; name = CD\Setup.inx
-    file[]: crc = dec37293; size =    652048; name = CD\start.exe
-	
-end
-
-//
-// Installer for Japanese CD
-//
-installer[pc-cd-jp-install]:
-	name = Japanese CD Installer
-    locale = ja-jp
-	imports = install-base
-	installid = pc-cd-jp
-	anchorfile = start.exe
-	EXENAME = X5
-	CDLABEL = ROCKMAN_X5
-    file[]: crc = 1c073d9f; size =        43; name = CD\autorun.inf
-    file[]: crc = dd107d46; size =    428190; name = CD\data1.cab
-    file[]: crc = 1b1500da; size =     32640; name = CD\data1.hdr
-    file[]: crc = 6c48a406; size =   1077760; name = CD\data2.cab
-    file[]: crc = 2050f89f; size =    340866; name = CD\ikernel.ex_
-    file[]: crc = 05690580; size =       417; name = CD\layout.bin
-    file[]: crc = 7013c394; size =     54784; name = CD\Setup.exe
-    file[]: crc = af42c3ec; size =        86; name = CD\Setup.ini
-    file[]: crc = 6b07b36e; size =    137979; name = CD\Setup.inx
-    file[]: crc = 65c9e319; size =    652048; name = CD\start.exe
 	
 end
 
