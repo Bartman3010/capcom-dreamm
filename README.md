@@ -10,7 +10,7 @@ Supported Games:
 |Mega Man X4 / Rockman X4|Windows 95|US, EU, JP, JP Demo|
 |Mega Man X5 / Rockman X5|Windows 95|US, JP|
 |Resident Evil / Biohazard|Windows 95|US|
-|Resident Evil 2/ Biohazard 2|Windows 95|US-EN, EU-EN, FR, GE, IT, SP, CH, Sim-CH|
+|Resident Evil 2/ Biohazard 2|Windows 95|US-EN, EU-EN, FR, GE, IT, SP, Traditional-CH, Simplified-CH, JP|
 |Resident Evil 3: NEMESIS / Biohazard 3: LAST ESCAPE|Windows 95|US, JP|
 |Street Fighter|MS-DOS|US|
 |Street Fighter II The World Warrior|MS-DOS|US|
